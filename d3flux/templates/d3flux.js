@@ -76,7 +76,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       if (window.location.protocol === 'https:') { 
         e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); 
       } else { 
-        e.setAttribute('src', 'http://nytimes.github.com/svg-crowbar/svg-crowbar.js'); 
+        e.setAttribute('src', 'https://nytimes.github.com/svg-crowbar/svg-crowbar.js'); 
       } 
       e.setAttribute('class', 'svg-crowbar'); 
       document.body.appendChild(e); 
