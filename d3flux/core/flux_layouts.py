@@ -10,10 +10,10 @@ import re
 from jinja2 import Environment, FileSystemLoader
 from IPython.display import HTML
 
-from ..io.json import _to_dict
+from cobra.io.json import _to_dict
 
 env = Environment(loader=FileSystemLoader(
-    os.path.join(os.path.dirname(__file__), 'templates')))
+    os.path.join(os.path.dirname(__file__), '../templates')))
 
 
 def flux_map(cobra_model, 
@@ -141,7 +141,9 @@ def flux_map(cobra_model,
     # display_name_format function
     if display_name_format:
 
-        # Handle the case for a default display name formatter.
+        # Handle the case for a default display name formatter. This is
+        # optimized for models using the typical bigg_id naming convention,
+        # ending with 'ID_c' compartment identifier.
         if display_name_format == True:
             display_name_format = (
                 lambda met: re.sub('__[D,L]', '', met.id[:-2].upper()))
@@ -166,41 +168,39 @@ def create_model_json(cobra_model):
     """
     # Add flux info
     for reaction in cobra_model.reactions:
+        
+        if 'map_info' not in reaction.notes:
+            reaction.notes['map_info'] = {}
+
         try:
             # If I'm styling reaction knockouts, don't set the flux for a
             # knocked out reaction
-            try: 
-                if reaction.notes['map_info']['group'] == 'ko': 
-                    # Delete the flux key, if it exists
-                    try:
-                        reaction.notes['map_info']['flux'] = 0
-                    except Exception: pass
+            
+            if reaction.lower_bound == reaction.upper_bound == 0:
+                reaction.notes['map_info']['group'] = 'ko'
 
-                    # Onto the next reaction
-                    continue
+                # Delete the flux key, if it exists
+                try: del reaction.notes['map_info']['flux']
+                except Exception: pass
 
-            # Onto the next reaction
-            except KeyError: pass
+                # Onto the next reaction
+                continue
 
             reaction.notes['map_info']['flux'] = reaction.x
-
-        except KeyError:
-            # Create a new "map_info" object
-            reaction.notes['map_info'] = {'flux' : reaction.x}
 
         except AttributeError:
             # Model likely hasn't been solved, get out now
             return json.dumps(_to_dict(cobra_model), allow_nan=False)
 
     for metabolite in cobra_model.metabolites:
+
+        if 'map_info' not in metabolite.notes:
+            metabolite.notes['map_info'] = {}
+
         try:
             carried_flux = sum([abs(r.x * r.metabolites[metabolite]) for r in
                                 metabolite.reactions])/2
             metabolite.notes['map_info']['flux'] = carried_flux
-
-        except KeyError:
-            # Create a new "map_info" object
-            metabolite.notes['map_info'] = {'flux' : carried_flux}
 
         except AttributeError:
             # Model likely hasn't been solved, get out now

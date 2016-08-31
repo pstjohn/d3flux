@@ -392,7 +392,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .data(reactions)
       .enter()
       .append("marker")
-      .attr("id", function (d) { return d.id; })
+      .attr("id", function (d) { return "{{ figure_id }}" + d.id; })
       .attr("viewBox", "0 0 10 10")
       .attr("refX", 12)
       .attr("refY", 5)
@@ -408,7 +408,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .data(reactions)
       .enter()
       .append("marker")
-      .attr("id", function (d) { return d.id + "_rev"; })
+      .attr("id", function (d) { return "{{ figure_id }}" + d.id + "_rev"; })
       .attr("viewBox", "0 0 10 10")
       .attr("refX", -2)
       .attr("refY", 5)
@@ -424,14 +424,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .data(bilinks)
       .enter()
       .append("path")
-      .attr("class", function (d) { return "link " + d.rxn.id; })
+      .attr("class", function (d) { return "link {{ figure_id }}" + d.rxn.id; })
       .attr("marker-end", function(d) {
-        return "url(#" + d.rxn.id + ")"; 
+        return "url(#{{ figure_id }}" + d.rxn.id + ")"; 
       })
       .attr("marker-start", function(d) {
-      	if (Math.abs(d.rxn.notes.map_info.flux) < 1E-8 &&
-	    d.rxn.notes.map_info.reversibility) {
-		return "url(#" + d.rxn.id + "_rev)";
+	// Only show the reversible arrow if the reaction isnt carrying flux in
+	// a particular direction
+      	if (((Math.abs(d.rxn.notes.map_info.flux) < 1E-8) || isNaN(d.rxn.notes.map_info.flux))
+			&& d.rxn.notes.map_info.reversibility) {
+		return "url(#{{ figure_id }}" + d.rxn.id + "_rev)";
 	}
       });
 
