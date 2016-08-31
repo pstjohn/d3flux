@@ -1,0 +1,31 @@
+#{{ figure_id }} svg {
+    height: {{ figheight }}px;
+    width: {{ figwidth }}px;
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node.rxn {
+  fill: #FFA319;
+}
+
+.node.rxn.hidden {
+  fill: none;
+  stroke: none;
+  stroke-width: 0;
+}
+
+.link {
+  fill: none;
+  stroke-linecap = round;
+}
+
+text.nodelabel {
+  fill: #555;
+  font-family: Arial;
+  font-size: 12;
+  pointer-events: none;
+}

@@ -1,0 +1,7 @@
+*.DS_Store
+*.sw[op]
+.ipynb_checkpoints
+
+*.py[co]
+__pycache__
+~$*
