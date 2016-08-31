@@ -2,7 +2,7 @@ var {{ figure_id }}model = {{ modeljson }};
 
 require.config({
   paths: {
-    d3: "http://d3js.org/d3.v3.min",
+    d3: "https://d3js.org/d3.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
     d3tip: "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip"
