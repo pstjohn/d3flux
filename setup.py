@@ -8,6 +8,6 @@ setup(name='d3flux',
       author='Peter St. John',
       author_email='peter.stjohn@nrel.gov',
       license='MIT',
-      packages=['d3flux'],
+      packages=['d3flux', 'd3flux.core', 'd3flux.templates'],
       install_requires=['pandas', 'cobra', 'jinja2', 'ipython'],
       )
