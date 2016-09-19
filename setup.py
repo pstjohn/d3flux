@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='d3flux',
-      version='0.1',
+      version='0.1.3',
       description='A d3.js-based metabolic visualization tool for cobrapy',
       url='https://github.com/pstjohn/d3flux',
       download_url='https://github.com/pstjohn/d3flux/tarball/0.1',
       author='Peter St. John',
       author_email='peter.stjohn@nrel.gov',
       license='MIT',
-      packages=['d3flux', 'd3flux.core', 'd3flux.templates'],
+      packages=find_packages(),
       install_requires=['pandas', 'cobra', 'jinja2', 'ipython'],
       )
