@@ -1,5 +1,6 @@
 """
-A D3-based network layout engine for plotting model solutions in the jupyter window
+A D3-based network layout engine for plotting model solutions in the jupyter
+window
 """
 
 import os
@@ -16,7 +17,7 @@ env = Environment(loader=FileSystemLoader(
     os.path.join(os.path.dirname(__file__), '../templates')))
 
 
-def flux_map(cobra_model, 
+def flux_map(cobra_model,
              excluded_metabolites=None, excluded_reactions=None,
              excluded_compartments=None, display_name_format=True,
              overwrite_reversibility=True, **kwargs):
@@ -38,7 +39,7 @@ def flux_map(cobra_model,
 
     Additional kwargs are passed directly to `render_model`:
 
-    background_template: 
+    background_template:
         filename for an SVG to render behind the flux figure.  Useful for
         compartments or layout guides.
 
@@ -67,70 +68,73 @@ def flux_map(cobra_model,
 
     fontsize:
         text size, in pt. Defaults to 12
-    
+
     """
     # build cofactor metabolites from strings
     cobra_metabolites = []
     if excluded_metabolites:
-        compartments = cobra_model.get_compartments()
+        compartments = set((m.compartment for m in cobra_model.metabolites))
         metabolite_list = [
             cf + '_' + co for cf, co in itertools.product(
                 excluded_metabolites, compartments)] + excluded_metabolites
         for cofactor in metabolite_list:
-            try: 
+            try:
                 cobra_metabolites += [
                     cobra_model.metabolites.get_by_id(cofactor)]
-            except KeyError: pass
+            except KeyError:
+                pass
             # what if its already a cobra metabolite?
 
     cobra_rxns = []
     if excluded_reactions:
         for rxnid in excluded_reactions:
-            try: 
+            try:
                 cobra_rxns += [
                     cobra_model.reactions.get_by_id(rxnid)]
-            except KeyError: pass
-
+            except KeyError:
+                pass
 
     # Exclude metabolites and reactions in the given comparment
     excluded_metabolites = set(cobra_metabolites)
     excluded_reactions = set(cobra_rxns)
 
     if excluded_compartments:
-        met_compartments = set((m for m in cobra_model.metabolites.iquery(
+        met_compartments = set((m for m in cobra_model.metabolites.query(
             lambda x: set(x.compartment).intersection(
-                set(excluded_compartments)))))
+                set(excluded_compartments)), None)))
         excluded_metabolites |= met_compartments
 
-        # Do I want to redo this not to include excluded metabolites? 
-        rxn_compartments = set((r for r in cobra_model.reactions.iquery(
-            lambda x: set(x.compartments).intersection(
-                set(excluded_compartments)))))
-        excluded_reactions |= rxn_compartments
+        # Do I want to redo this not to include excluded metabolites?
+        # rxn_compartments = set((r for r in cobra_model.reactions.query(
+        #     lambda x: set(x.compartments).intersection(
+        #         set(excluded_compartments)), None)))
+        # excluded_reactions |= rxn_compartments
 
-    for reaction in excluded_reactions:
-        reaction.notes['map_info'] = {'hidden' : True}
+    # for reaction in excluded_reactions:
+    #     reaction.notes['map_info'] = {'hidden': True}
 
     for metabolite in excluded_metabolites:
-        metabolite.notes['map_info'] = {'hidden' : True}
+        metabolite.notes['map_info'] = {'hidden': True}
 
     def is_hidden(obj):
-        try: return bool(obj.notes['map_info']['hidden'])
-        except KeyError: return False
+        try:
+            return bool(obj.notes['map_info']['hidden'])
+        except KeyError:
+            return False
 
     for reaction in cobra_model.reactions:
-        
+
         if overwrite_reversibility:
             try:
                 reaction.notes['map_info']['reversibility'] = \
-                reaction.reversibility
+                    reaction.reversibility
             except KeyError:
                 reaction.notes['map_info'] = {
                     'reversibility': reaction.reversibility}
 
         # Hide reactions if all of their products or reactants are hidden
         if (all([is_hidden(met) for met in reaction.reactants]) or
-            all([is_hidden(met) for met in reaction.products])):
+                all([is_hidden(met) for met in reaction.products])):
 
             try:
                 reaction.notes['map_info']['hidden'] = True
@@ -144,7 +148,7 @@ def flux_map(cobra_model,
         # Handle the case for a default display name formatter. This is
         # optimized for models using the typical bigg_id naming convention,
         # ending with 'ID_c' compartment identifier.
-        if display_name_format == True:
+        if display_name_format is True:
             display_name_format = (
                 lambda met: re.sub('__[D,L]', '', met.id[:-2].upper()))
 
@@ -157,31 +161,33 @@ def flux_map(cobra_model,
             if 'display_name' not in met.notes['map_info']:
                 met.notes['map_info']['display_name'] = (
                     display_name_format(met))
-        
+
     return render_model(cobra_model, **kwargs)
 
 
 def create_model_json(cobra_model):
     """ Convert a cobra.Model object to a json string for d3. Adds flux
     information if the model has been solved
-    
+
     """
     # Add flux info
     for reaction in cobra_model.reactions:
-        
+
         if 'map_info' not in reaction.notes:
             reaction.notes['map_info'] = {}
 
         try:
             # If I'm styling reaction knockouts, don't set the flux for a
             # knocked out reaction
-            
+
             if reaction.lower_bound == reaction.upper_bound == 0:
                 reaction.notes['map_info']['group'] = 'ko'
 
                 # Delete the flux key, if it exists
-                try: del reaction.notes['map_info']['flux']
-                except Exception: pass
+                try:
+                    del reaction.notes['map_info']['flux']
+                except Exception:
+                    pass
 
                 # Onto the next reaction
                 continue
@@ -199,7 +205,7 @@ def create_model_json(cobra_model):
 
         try:
             carried_flux = sum([abs(r.x * r.metabolites[metabolite]) for r in
-                                metabolite.reactions])/2
+                                metabolite.reactions]) / 2
             metabolite.notes['map_info']['flux'] = carried_flux
 
         except AttributeError:
@@ -209,16 +215,15 @@ def create_model_json(cobra_model):
     return json.dumps(_to_dict(cobra_model), allow_nan=False)
 
 
-
 def render_model(cobra_model, background_template=None, custom_css=None,
                  figure_id=None, hide_unused=None, hide_unused_cofactors=None,
                  figsize=None, label=None,
                  fontsize=None):
-    """ Render a cobra.Model object in the current window 
-    
+    """ Render a cobra.Model object in the current window
+
     Parameters:
 
-    background_template: 
+    background_template:
         filename for an SVG to render behind the flux figure.  Useful for
         compartments or layout guides.
 
@@ -242,7 +247,7 @@ def render_model(cobra_model, background_template=None, custom_css=None,
 
     fontsize:
         text size, in pt. Defaults to 12
-        
+
 
     """
 
@@ -253,7 +258,6 @@ def render_model(cobra_model, background_template=None, custom_css=None,
         render_model._fignum += 1
         figure_id = 'd3flux{:0>3d}'.format(render_model._fignum)
 
-
     if not figsize:
         figsize = (1028, 768)
 
@@ -261,17 +265,20 @@ def render_model(cobra_model, background_template=None, custom_css=None,
 
     if not hide_unused:
         hide_unused = "false"
-    else: hide_unused = "true"
+    else:
+        hide_unused = "true"
 
     if not hide_unused_cofactors:
         hide_unused_cofactors = "false"
-    else: hide_unused_cofactors = "true"
+    else:
+        hide_unused_cofactors = "true"
 
     # Handle custom CSS
-    if not custom_css: 
+    if not custom_css:
         custom_css = ''
 
-    if not fontsize: fontsize = 12
+    if not fontsize:
+        fontsize = 12
 
     # Handle background template
     if not background_template:
@@ -308,5 +315,3 @@ def render_model(cobra_model, background_template=None, custom_css=None,
 
 # Initialize figure counter
 render_model._fignum = 0
-
-

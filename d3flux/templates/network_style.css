@@ -1,6 +1,4 @@
 #{{ figure_id }} svg {
-    height: {{ figheight }}px;
-    width: {{ figwidth }}px;
 }
 
 .node {
