@@ -47,11 +47,13 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     // initalize the svg canvas
     if ({{ no_background }}) {
       var svg = d3.select("#{{ figure_id }}").append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("viewBox", "0 0 {{ figwidth }} {{ figheight }}");
     } else {
       var svg = d3.select("#{{ figure_id }}").select("svg");
     }
+
+    // Append the CSS styles
+    svg.append("style").text("{{ css }}");
 
     // Code for the figure manipulation buttons.
     d3.select("#{{ figure_id }}_options .reactionbutton").on("click", function() {
@@ -579,11 +581,11 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
         if (!isNaN(flux)) {
           return flux;
         } else{
-          return 2.0;
+          return {{ default_flux_width }};
         }
       }
       catch(err) {
-        return 2.0; // Default linewidth
+        return {{ default_flux_width }}; // Default linewidth
       }
     }
 

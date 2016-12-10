@@ -10,6 +10,7 @@ import re
 
 from jinja2 import Environment, FileSystemLoader
 from IPython.display import HTML
+from csscompressor import compress
 
 from cobra.io.json import _to_dict
 
@@ -68,6 +69,10 @@ def flux_map(cobra_model,
 
     fontsize:
         text size, in pt. Defaults to 12
+
+    default_flux_width:
+        If reaction fluxes are missing, the default thickness to use for
+        connecting arrows.
 
     """
     # build cofactor metabolites from strings
@@ -176,27 +181,21 @@ def create_model_json(cobra_model):
         if 'map_info' not in reaction.notes:
             reaction.notes['map_info'] = {}
 
+        # If I'm styling reaction knockouts, don't set the flux for a
+        # knocked out reaction
+
+        if reaction.lower_bound == reaction.upper_bound == 0:
+            reaction.notes['map_info']['group'] = 'ko'
+
+            # Onto the next reaction
+            continue
+
+        # Delete the flux key, if it exists
         try:
-            # If I'm styling reaction knockouts, don't set the flux for a
-            # knocked out reaction
-
-            if reaction.lower_bound == reaction.upper_bound == 0:
-                reaction.notes['map_info']['group'] = 'ko'
-
-                # Delete the flux key, if it exists
-                try:
-                    del reaction.notes['map_info']['flux']
-                except Exception:
-                    pass
-
-                # Onto the next reaction
-                continue
-
+            del reaction.notes['map_info']['flux']
             reaction.notes['map_info']['flux'] = reaction.x
-
-        except AttributeError:
-            # Model likely hasn't been solved, get out now
-            return json.dumps(_to_dict(cobra_model), allow_nan=False)
+        except Exception:
+            pass
 
     for metabolite in cobra_model.metabolites:
 
@@ -204,21 +203,21 @@ def create_model_json(cobra_model):
             metabolite.notes['map_info'] = {}
 
         try:
+            del metabolite.notes['map_info']['flux']
             carried_flux = sum([abs(r.x * r.metabolites[metabolite]) for r in
                                 metabolite.reactions]) / 2
             metabolite.notes['map_info']['flux'] = carried_flux
 
-        except AttributeError:
-            # Model likely hasn't been solved, get out now
-            return json.dumps(_to_dict(cobra_model), allow_nan=False)
+        except Exception:
+            pass
 
     return json.dumps(_to_dict(cobra_model), allow_nan=False)
 
 
 def render_model(cobra_model, background_template=None, custom_css=None,
                  figure_id=None, hide_unused=None, hide_unused_cofactors=None,
-                 figsize=None, label=None,
-                 fontsize=None):
+                 figsize=None, label=None, fontsize=None,
+                 default_flux_width=2.5):
     """ Render a cobra.Model object in the current window
 
     Parameters:
@@ -248,6 +247,9 @@ def render_model(cobra_model, background_template=None, custom_css=None,
     fontsize:
         text size, in pt. Defaults to 12
 
+    default_flux_width:
+        If reaction fluxes are missing, the default thickness to use for
+        connecting arrows.
 
     """
 
@@ -303,11 +305,11 @@ def render_model(cobra_model, background_template=None, custom_css=None,
                             hide_unused=hide_unused,
                             hide_unused_cofactors=hide_unused_cofactors,
                             figwidth=figsize[0], figheight=figsize[1],
-                            fontsize=fontsize)
+                            fontsize=fontsize, css=compress(css + custom_css),
+                            default_flux_width=default_flux_width)
 
     html = template_html.render(figure_id=figure_id,
                                 background_svg=background_svg,
-                                default_style=css, custom_css=custom_css,
                                 javascript_source=js)
 
     # compile and return HTML
