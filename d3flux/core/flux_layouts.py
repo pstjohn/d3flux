@@ -191,6 +191,10 @@ def create_model_json(cobra_model):
         # Delete the flux key, if it exists
         try:
             del reaction.notes['map_info']['flux']
+        except KeyError:
+            pass
+        
+        try:
             reaction.notes['map_info']['flux'] = reaction.x
         except Exception:
             pass
