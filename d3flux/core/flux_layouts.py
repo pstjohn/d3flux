@@ -14,9 +14,7 @@ from csscompressor import compress
 
 from cobra.io.json import _to_dict
 
-env = Environment(loader=FileSystemLoader(
-    os.path.join(os.path.dirname(__file__), '../templates')))
-
+import d3flux
 
 def flux_map(cobra_model,
              excluded_metabolites=None, excluded_reactions=None,
@@ -292,6 +290,9 @@ def render_model(cobra_model, background_template=None, custom_css=None,
         no_background = "false"
 
     # Initialize the jinja templates
+    env = Environment(loader=FileSystemLoader(
+        os.path.join(os.path.dirname(d3flux.__file__), 'templates')))
+    
     template_css = env.get_template('network_style.css')
     template_html = env.get_template('output_template.html')
     template_js = env.get_template('d3flux.js')
