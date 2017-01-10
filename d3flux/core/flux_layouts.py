@@ -184,20 +184,19 @@ def create_model_json(cobra_model):
 
         if reaction.lower_bound == reaction.upper_bound == 0:
             reaction.notes['map_info']['group'] = 'ko'
+            
+            # Delete the flux key, if it exists
+            try:
+                del reaction.notes['map_info']['flux']
+            except KeyError:
+                pass
 
-            # Onto the next reaction
-            continue
+        else: 
+            try:
+                reaction.notes['map_info']['flux'] = reaction.x
+            except Exception:
+                pass
 
-        # Delete the flux key, if it exists
-        try:
-            del reaction.notes['map_info']['flux']
-        except KeyError:
-            pass
-        
-        try:
-            reaction.notes['map_info']['flux'] = reaction.x
-        except Exception:
-            pass
 
     for metabolite in cobra_model.metabolites:
 
