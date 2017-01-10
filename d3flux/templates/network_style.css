@@ -15,7 +15,7 @@
 
 .link {
   fill: none;
-  stroke-linecap = round;
+  stroke-linecap: round;
 }
 
 text.nodelabel {
