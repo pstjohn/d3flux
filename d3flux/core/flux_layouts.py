@@ -193,7 +193,10 @@ def create_model_json(cobra_model):
 
         else: 
             try:
-                reaction.notes['map_info']['flux'] = reaction.x
+                if abs(reaction.x) < 1E-8:
+                    reaction.notes['map_info']['flux'] = 0.
+                else:
+                    reaction.notes['map_info']['flux'] = reaction.x
             except Exception:
                 pass
 
@@ -205,6 +208,11 @@ def create_model_json(cobra_model):
 
         try:
             del metabolite.notes['map_info']['flux']
+
+        except KeyError:
+            pass
+
+        try:
             carried_flux = sum([abs(r.x * r.metabolites[metabolite]) for r in
                                 metabolite.reactions]) / 2
             metabolite.notes['map_info']['flux'] = carried_flux

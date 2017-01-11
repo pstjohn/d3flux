@@ -140,7 +140,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       r_point = new Point2D(r.x, r.y)
       t_point = new Point2D(t.x, t.y)
 
-      var padding = 10;
+      var padding = 5;
       // var total_len = quadraticBezierLength(s, cp, r) + quadraticBezierLength(r, cp_inv, t);
 
 
@@ -148,21 +148,24 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       if (plot_reverse_arrowhead(d.rxn)) {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, padding + arrowhead_scale(get_flux_width(d.rxn))).slice(0)[0]
+		s_point, cp, r_point, s_point, 
+		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point, padding + arrowhead_scale(get_flux_width(d.rxn))).slice(-1)[0]
-        a = first_intersect
-        b = last_intersect
+		r_point, cp_inv, t_point, t_point, 
+		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+        a = first_intersect;
+        b = last_intersect;
 
       }
       else {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, padding).slice(0)[0]
+		s_point, cp, r_point, s_point, padding + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point, padding + arrowhead_scale(get_flux_width(d.rxn))).slice(-1)[0]
-        a = first_intersect
-        b = last_intersect
+		r_point, cp_inv, t_point, t_point,
+		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+        a = first_intersect;
+        b = last_intersect;
 
         // b = 1 - (padding + arrowhead_scale(get_flux_width(d.rxn)))/total_len;
       }
