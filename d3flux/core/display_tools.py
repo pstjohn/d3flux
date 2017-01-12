@@ -57,7 +57,8 @@ def color_redox_rxns(cobra_model, reset_groups=True, color_knockouts=True,
 
     # Assign group for knocked out reactions
     if color_knockouts:
-        for rxn in cobra_model.reactions.query(lambda r: r.bounds == (0, 0)):
+        for rxn in cobra_model.reactions.query(
+                lambda r: r.bounds == (0, 0), None):
             rxn.notes['map_info']['group'] = 'ko'
 
     # Assign new group info based on redox balance
