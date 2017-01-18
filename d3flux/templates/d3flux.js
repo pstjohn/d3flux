@@ -578,9 +578,14 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     }
 
     var updateLink = function() {
-      this.attr("d", function(d) {
-        return calculate_path(d, force, Math.max(this.getTotalLength(), 15));
-      });
+        try {
+          this.attr("d", function(d) {
+            return calculate_path(d, force, Math.max(this.getTotalLength(), 15));
+          });
+        }
+        catch(err) {
+          return '';
+        }
     }
 
     var updateAnchorNodes = function() {
