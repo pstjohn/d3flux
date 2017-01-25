@@ -2,13 +2,16 @@
 
 This package implements a d3.js based visualization tool for cobrapy models.
 
+*Note*: This is still very much alpha software. Many things won't work :)
+
+
 ## Install
-Install via pip:
+Install via pip (not recommended at this point..):
 ```
 pip3 install d3flux
 ```
 
-Or, setup a development version by cloning the repo
+Or, setup a development version by cloning the repo (do this)
 
 ```
 git clone git@github.com:pstjohn/d3flux.git
