@@ -24,3 +24,7 @@ text.nodelabel {
   font-size: 12;
   pointer-events: none;
 }
+
+text.cofactor {
+  fill: #778899;
+}
