@@ -130,10 +130,10 @@ def flux_map(cobra_model,
         if overwrite_reversibility:
             try:
                 reaction.notes['map_info']['reversibility'] = \
-                    reaction.reversibility
+                    bool(reaction.reversibility)
             except KeyError:
                 reaction.notes['map_info'] = {
-                    'reversibility': reaction.reversibility}
+                    'reversibility': bool(reaction.reversibility)}
 
         # Hide reactions if all of their products or reactants are hidden
         if (all([is_hidden(met) for met in reaction.reactants]) or
