@@ -73,6 +73,13 @@ def flux_map(cobra_model,
         connecting arrows.
 
     """
+
+    # Initialize empty map_info field in object notes
+    for obj in itertools.chain([cobra_model, *cobra_model.metabolites,
+                                *cobra_model.reactions]):
+        if 'map_info' not in obj.notes:
+            obj.notes['map_info'] = {}
+
     # build cofactor metabolites from strings
     cobra_metabolites = []
     if excluded_metabolites:
@@ -157,9 +164,6 @@ def flux_map(cobra_model,
 
         for met in cobra_model.metabolites:
 
-            if 'map_info' not in met.notes:
-                met.notes['map_info'] = {}
-
             # Don't overwrite existing display names
             if 'display_name' not in met.notes['map_info']:
                 met.notes['map_info']['display_name'] = (
@@ -175,9 +179,6 @@ def create_model_json(cobra_model):
     """
     # Add flux info
     for reaction in cobra_model.reactions:
-
-        if 'map_info' not in reaction.notes:
-            reaction.notes['map_info'] = {}
 
         # If I'm styling reaction knockouts, don't set the flux for a
         # knocked out reaction
@@ -203,9 +204,6 @@ def create_model_json(cobra_model):
 
     for metabolite in cobra_model.metabolites:
 
-        if 'map_info' not in metabolite.notes:
-            metabolite.notes['map_info'] = {}
-
         try:
             del metabolite.notes['map_info']['flux']
 
@@ -225,7 +223,7 @@ def create_model_json(cobra_model):
 
 def render_model(cobra_model, background_template=None, custom_css=None,
                  figure_id=None, hide_unused=None, hide_unused_cofactors=None,
-                 figsize=None, label=None, fontsize=None,
+                 inactive_alpha=1., figsize=None, label=None, fontsize=None,
                  default_flux_width=2.5):
     """ Render a cobra.Model object in the current window
 
@@ -249,6 +247,10 @@ def render_model(cobra_model, background_template=None, custom_css=None,
     hide_unused_cofactors:
         similar to hide_unused, but only hide cofactor nodes for reactions with
         0 flux.
+
+    inactive_alpha:
+        Alpha value with which to color reactions and nodes without any carried
+        flux. Defaults to 1.
 
     figsize:
         size, in pixels, of the generated SVG window. Defaults to 1024x768.
@@ -309,8 +311,7 @@ def render_model(cobra_model, background_template=None, custom_css=None,
     template_js = env.get_template('d3flux.js')
 
     # Render the jinja templates with the given variables
-    css = template_css.render(figure_id=figure_id, figwidth=figsize[0],
-                              figheight=figsize[1])
+    css = template_css.render(inactive_alpha=inactive_alpha)
 
     js = template_js.render(figure_id=figure_id, modeljson=modeljson,
                             no_background=no_background,

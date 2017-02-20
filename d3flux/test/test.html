@@ -12,7 +12,7 @@
   <!-- <button type="button" class="btn btn-info" href="javascript:(function () { var e = document.createElement('script'); if (window.location.protocol === 'https:') { e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); } else { e.setAttribute('src', 'http://nytimes.github.com/svg-crowbar/svg-crowbar.js'); } e.setAttribute('class', 'svg-crowbar'); document.body.appendChild(e); })();">Download SVG</button> -->
 </div>
 <script type="text/Javascript">
-var d3flux001model = {"version": 1, "metabolites": [{"id": "A", "name": "", "notes": {"map_info": {"y": 50, "display_name": "A", "x": 150}}, "formula": "", "compartment": ""}, {"id": "B", "name": "", "notes": {"map_info": {"y": 130, "display_name": "B", "x": 80}}, "formula": "", "compartment": ""}, {"id": "C", "name": "", "notes": {"map_info": {"y": 130, "display_name": "C", "x": 150}}, "formula": "", "compartment": ""}, {"id": "D", "name": "", "notes": {"map_info": {"y": 130, "display_name": "D", "x": 220}}, "formula": "", "compartment": ""}, {"id": "E", "name": "", "notes": {"map_info": {"y": 200, "display_name": "E", "x": 220}}, "formula": "", "compartment": ""}, {"id": "P", "name": "", "notes": {"map_info": {"y": 200, "display_name": "P", "x": 150}}, "formula": "", "compartment": ""}], "id": "simple_model", "reactions": [{"gene_reaction_rule": "", "metabolites": {"A": 1}, "id": "R1", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 1000.0, "reversibility": false, "hidden": true}}}, {"gene_reaction_rule": "", "metabolites": {"B": 1}, "id": "R2", "name": "", "lower_bound": -1000, "upper_bound": 1000, "notes": {"map_info": {"flux": 0.0, "reversibility": true, "hidden": true}}}, {"gene_reaction_rule": "", "metabolites": {"P": -1}, "id": "R3", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 500.0, "reversibility": false, "hidden": true}}}, {"gene_reaction_rule": "", "objective_coefficient": 1, "metabolites": {"E": -1}, "id": "R4", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 500.0, "reversibility": false, "hidden": true}}}, {"gene_reaction_rule": "", "metabolites": {"B": 1, "A": -1}, "id": "R5", "name": "", "lower_bound": -1000, "upper_bound": 1000, "notes": {"map_info": {"flux": 0.0, "reversibility": true}}}, {"gene_reaction_rule": "", "metabolites": {"C": 1, "A": -1}, "id": "R6", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 500.0, "reversibility": false}}}, {"gene_reaction_rule": "", "metabolites": {"D": 1, "A": -1}, "id": "R7", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 500.0, "reversibility": false}}}, {"gene_reaction_rule": "", "metabolites": {"C": 1, "B": -1}, "id": "R8", "name": "", "lower_bound": 0, "upper_bound": 0, "notes": {"map_info": {"group": "ko", "reversibility": false}}}, {"gene_reaction_rule": "", "metabolites": {"B": -1, "P": 1}, "id": "R9", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 0.0, "reversibility": false}}}, {"gene_reaction_rule": "", "metabolites": {"P": 1, "E": 1, "C": -1, "D": -1}, "id": "R10", "name": "", "lower_bound": 0, "upper_bound": 1000, "notes": {"map_info": {"flux": 500.0, "reversibility": false}}}], "genes": [], "notes": {"map_info": {}}};
+var d3flux001model = {"version": 1, "notes": {"map_info": {}}, "reactions": [{"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 1000.0, "hidden": true}}, "metabolites": {"A": 1}, "id": "R1"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": -1000, "notes": {"map_info": {"reversibility": true, "flux": 0.0, "hidden": true}}, "metabolites": {"B": 1}, "id": "R2"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 500.0, "hidden": true}}, "metabolites": {"P": -1}, "id": "R3"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 500.0, "hidden": true}}, "objective_coefficient": 1.0, "id": "R4", "metabolites": {"E": -1}}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": -1000, "notes": {"map_info": {"reversibility": true, "flux": 0.0}}, "metabolites": {"B": 1, "A": -1}, "id": "R5"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 500.0}}, "metabolites": {"C": 1, "A": -1}, "id": "R6"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 500.0}}, "metabolites": {"D": 1, "A": -1}, "id": "R7"}, {"upper_bound": 0, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "group": "ko"}}, "metabolites": {"C": 1, "B": -1}, "id": "R8"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 0.0}}, "metabolites": {"P": 1, "B": -1}, "id": "R9"}, {"upper_bound": 1000, "name": "", "gene_reaction_rule": "", "lower_bound": 0, "notes": {"map_info": {"reversibility": false, "flux": 500.0}}, "metabolites": {"P": 1, "D": -1, "E": 1, "C": -1}, "id": "R10"}], "genes": [], "metabolites": [{"notes": {"map_info": {"display_name": "A", "x": 150, "flux": 1000.0, "y": 50}}, "name": "", "formula": "", "id": "A", "compartment": ""}, {"notes": {"map_info": {"display_name": "B", "x": 80, "flux": 0.0, "y": 130}}, "name": "", "formula": "", "id": "B", "compartment": ""}, {"notes": {"map_info": {"display_name": "C", "x": 150, "flux": 500.0, "y": 130}}, "name": "", "formula": "", "id": "C", "compartment": ""}, {"notes": {"map_info": {"display_name": "D", "x": 220, "flux": 500.0, "y": 130}}, "name": "", "formula": "", "id": "D", "compartment": ""}, {"notes": {"map_info": {"display_name": "E", "x": 220, "flux": 500.0, "y": 200}}, "name": "", "formula": "", "id": "E", "compartment": ""}, {"notes": {"map_info": {"display_name": "P", "x": 150, "flux": 500.0, "y": 200}}, "name": "", "formula": "", "id": "P", "compartment": ""}], "id": "simple_model"};
 
 require.config({
   paths: {
@@ -67,7 +67,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     }
 
     // Append the CSS styles
-    svg.append("style").text(".node{stroke:#fff;stroke-width:1.5px}.node.rxn{fill:#ffa319}.node.rxn.hidden{fill:none;stroke:none;stroke-width:0}.link{fill:none;stroke-linecap:round}text.nodelabel{fill:#555;font-family:Arial;font-size:12;pointer-events:none}");
+    svg.append("style").text(".node{stroke:#fff;stroke-width:1.5px}.node.rxn{fill:#ffa319}.node.rxn.hidden{fill:none;stroke:none;stroke-width:0}.link{fill:none;stroke-linecap:round}text.nodelabel{fill:#555;font-family:Arial;font-size:12;pointer-events:none}text.cofactor{fill:#789}marker.inactive,.node.inactive,text.inactive{fill-opacity:.5}.link.inactive{stroke-opacity:.5}");
 
     // Code for the figure manipulation buttons.
     d3.select("#d3flux001_options .reactionbutton").on("click", function() {
@@ -154,7 +154,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       r_point = new Point2D(r.x, r.y)
       t_point = new Point2D(t.x, t.y)
 
-      var padding = 10;
+      var padding = 5;
       // var total_len = quadraticBezierLength(s, cp, r) + quadraticBezierLength(r, cp_inv, t);
 
 
@@ -162,21 +162,24 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       if (plot_reverse_arrowhead(d.rxn)) {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, padding + arrowhead_scale(get_flux_width(d.rxn))).slice(0)[0]
+		s_point, cp, r_point, s_point, 
+		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point, padding + arrowhead_scale(get_flux_width(d.rxn))).slice(-1)[0]
-        a = first_intersect
-        b = last_intersect
+		r_point, cp_inv, t_point, t_point, 
+		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+        a = first_intersect;
+        b = last_intersect;
 
       }
       else {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, padding).slice(0)[0]
+		s_point, cp, r_point, s_point, padding + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point, padding + arrowhead_scale(get_flux_width(d.rxn))).slice(-1)[0]
-        a = first_intersect
-        b = last_intersect
+		r_point, cp_inv, t_point, t_point,
+		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+        a = first_intersect;
+        b = last_intersect;
 
         // b = 1 - (padding + arrowhead_scale(get_flux_width(d.rxn)))/total_len;
       }
@@ -193,11 +196,17 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       var target_x = r.x*b**2 - 2*r.x*b + r.x - 2*cp_inv.x*b**2 + 2*cp_inv.x*b + t.x*b**2;
       var target_y = r.y*b**2 - 2*r.y*b + r.y - 2*cp_inv.y*b**2 + 2*cp_inv.y*b + t.y*b**2;
 
-      return "M" + source_x + "," + source_y
-        + " Q" + cp_x + "," + cp_y
-        + " " + r.x + "," + r.y
-        + " Q" + cp_inv_x + "," + cp_inv_y
-        +" " + target_x + "," + target_y
+      if ( isFinite(source_x) & isFinite(cp_x) & isFinite(cp_inv_x) & isFinite(target_x) ) {
+        return "M" + source_x + "," + source_y
+          + " Q" + cp_x + "," + cp_y
+          + " " + r.x + "," + r.y
+          + " Q" + cp_inv_x + "," + cp_inv_y
+          +" " + target_x + "," + target_y;
+      } else {
+        return "M" + s.x + "," + s.y
+          + " L" + r.x + "," + r.y
+          +" L" + t.x + "," + t.y;
+      }
     }
 
     function plot_reverse_arrowhead(rxn) {
@@ -462,7 +471,15 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .attr("markerWidth", "7pt")
       .attr("markerHeight", "7pt")
       .attr("orient", "auto")
-      .attr("class", "endmarker")
+      .attr("class", function (d) {
+        var labels = "endmarker"
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .append("path")
       .attr("d", "M 0 0 L 10 5 L 0 10 z");
 
@@ -478,7 +495,15 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .attr("markerWidth", "7pt")
       .attr("markerHeight", "7pt")
       .attr("orient", "auto")
-      .attr("class", "startmarker")
+      .attr("class", function (d) {
+        var labels = "startmarker"
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .append("path")
       .attr("d", "M 10,10 0,5 10,0 Z");
 
@@ -486,7 +511,15 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .data(bilinks)
       .enter()
       .append("path")
-      .attr("class", function (d) { return "link d3flux001" + d.rxn.id; })
+      .attr("class", function (d) {
+        var labels = "link d3flux001" + d.rxn.id;
+        if ('flux' in d.rxn.notes.map_info) {
+          if (d.rxn.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .attr("marker-end", function(d) {
         return "url(#d3flux001" + d.rxn.id + ")"; 
       })
@@ -525,9 +558,19 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
 
     node.append("circle")
       .attr("class", function(d) {
+        var labels = "node";
         if (d.type == 'rxn') {
-          return "node " + d.type + " hidden";
-        } else return "node metabolite";})
+          labels = labels.concat(" " + d.type + " hidden");
+        } else {
+          labels = labels.concat(" metabolite");
+        }
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .attr("id", function(d) { return d.id; })
       .attr("r", 5)
       .style("fill", function(d) { 
@@ -542,11 +585,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     // add the text 
     node.append("text")
       .attr("class", function(d) {
+        var labels = "nodelabel";
         if ('cofactor' in d) {
-          return "cofactor nodelabel";
-        } else {
-          return "nodelabel";
+          labels = labels.concat(" cofactor");
         }
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
       })
       .attr("id", function(d) {return d.id})
       .attr("dx", "12")
@@ -589,9 +637,14 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     }
 
     var updateLink = function() {
-      this.attr("d", function(d) {
-        return calculate_path(d, force, Math.max(this.getTotalLength(), 15));
-      });
+        try {
+          this.attr("d", function(d) {
+            return calculate_path(d, force, Math.max(this.getTotalLength(), 15));
+          });
+        }
+        catch(err) {
+          return '';
+        }
     }
 
     var updateAnchorNodes = function() {

@@ -28,3 +28,13 @@ text.nodelabel {
 text.cofactor {
   fill: #778899;
 }
+
+marker.inactive, .node.inactive, text.inactive {
+  fill-opacity: {{ inactive_alpha }};
+}
+
+.link.inactive {
+  stroke-opacity: {{ inactive_alpha }};
+}
+
+

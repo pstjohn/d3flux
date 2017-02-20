@@ -182,11 +182,17 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       var target_x = r.x*b**2 - 2*r.x*b + r.x - 2*cp_inv.x*b**2 + 2*cp_inv.x*b + t.x*b**2;
       var target_y = r.y*b**2 - 2*r.y*b + r.y - 2*cp_inv.y*b**2 + 2*cp_inv.y*b + t.y*b**2;
 
-      return "M" + source_x + "," + source_y
-        + " Q" + cp_x + "," + cp_y
-        + " " + r.x + "," + r.y
-        + " Q" + cp_inv_x + "," + cp_inv_y
-        +" " + target_x + "," + target_y
+      if ( isFinite(source_x) & isFinite(cp_x) & isFinite(cp_inv_x) & isFinite(target_x) ) {
+        return "M" + source_x + "," + source_y
+          + " Q" + cp_x + "," + cp_y
+          + " " + r.x + "," + r.y
+          + " Q" + cp_inv_x + "," + cp_inv_y
+          +" " + target_x + "," + target_y;
+      } else {
+        return "M" + s.x + "," + s.y
+          + " L" + r.x + "," + r.y
+          +" L" + t.x + "," + t.y;
+      }
     }
 
     function plot_reverse_arrowhead(rxn) {
@@ -259,6 +265,10 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
                 },
                 'cofactor' : reaction.id
               };
+
+              if ('flux' in reaction.notes.map_info) {
+                cofactor_node.notes.map_info['flux'] = reaction.notes.map_info.flux;
+              }
 
               // Inheret color from original metabolite
               if ('color' in orig_metabolite.notes.map_info) {
@@ -451,7 +461,15 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .attr("markerWidth", "7pt")
       .attr("markerHeight", "7pt")
       .attr("orient", "auto")
-      .attr("class", "endmarker")
+      .attr("class", function (d) {
+        var labels = "endmarker"
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .append("path")
       .attr("d", "M 0 0 L 10 5 L 0 10 z");
 
@@ -467,7 +485,15 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .attr("markerWidth", "7pt")
       .attr("markerHeight", "7pt")
       .attr("orient", "auto")
-      .attr("class", "startmarker")
+      .attr("class", function (d) {
+        var labels = "startmarker"
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .append("path")
       .attr("d", "M 10,10 0,5 10,0 Z");
 
@@ -475,7 +501,15 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       .data(bilinks)
       .enter()
       .append("path")
-      .attr("class", function (d) { return "link {{ figure_id }}" + d.rxn.id; })
+      .attr("class", function (d) {
+        var labels = "link {{ figure_id }}" + d.rxn.id;
+        if ('flux' in d.rxn.notes.map_info) {
+          if (d.rxn.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .attr("marker-end", function(d) {
         return "url(#{{ figure_id }}" + d.rxn.id + ")"; 
       })
@@ -514,9 +548,19 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
 
     node.append("circle")
       .attr("class", function(d) {
+        var labels = "node";
         if (d.type == 'rxn') {
-          return "node " + d.type + " hidden";
-        } else return "node metabolite";})
+          labels = labels.concat(" " + d.type + " hidden");
+        } else {
+          labels = labels.concat(" metabolite");
+        }
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
+      })
       .attr("id", function(d) { return d.id; })
       .attr("r", 5)
       .style("fill", function(d) { 
@@ -531,11 +575,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     // add the text 
     node.append("text")
       .attr("class", function(d) {
+        var labels = "nodelabel";
         if ('cofactor' in d) {
-          return "cofactor nodelabel";
-        } else {
-          return "nodelabel";
+          labels = labels.concat(" cofactor");
         }
+        if ('flux' in d.notes.map_info) {
+          if (d.notes.map_info.flux == 0) {
+            labels = labels.concat(" inactive");
+          }
+        }
+        return labels;
       })
       .attr("id", function(d) {return d.id})
       .attr("dx", "12")
