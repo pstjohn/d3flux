@@ -221,7 +221,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
             if ({{ hide_unused }} && (Math.abs(metabolite.notes.map_info.flux) < 1E-6)) {
               return;
             }
-            mfluxes.push(metabolite.notes.map_info.flux);
+            mfluxes.push(Math.abs(metabolite.notes.map_info.flux));
           }
         }
       }
@@ -717,7 +717,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
 
     function get_node_radius (d) {
       try {
-        var nodewidth = metabolite_scale(d.notes.map_info.flux);
+        var nodewidth = metabolite_scale(Math.abs(d.notes.map_info.flux));
         if (!isNaN(nodewidth)) {
           return nodewidth;
         } else {
