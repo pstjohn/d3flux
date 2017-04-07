@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 from IPython.display import HTML
 from csscompressor import compress
 
-from cobra.io.json import _to_dict
+from cobra.io.json import model_to_dict
 
 import d3flux
 
@@ -213,12 +213,15 @@ def create_model_json(cobra_model):
         try:
             carried_flux = sum([abs(r.x * r.metabolites[metabolite]) for r in
                                 metabolite.reactions]) / 2
-            metabolite.notes['map_info']['flux'] = carried_flux
+            if carried_flux > 1E-8:
+                metabolite.notes['map_info']['flux'] = carried_flux
+            else:
+                metabolite.notes['map_info']['flux'] = 0.
 
         except Exception:
             pass
 
-    return json.dumps(_to_dict(cobra_model), allow_nan=False)
+    return json.dumps(model_to_dict(cobra_model), allow_nan=False)
 
 
 def render_model(cobra_model, background_template=None, custom_css=None,
