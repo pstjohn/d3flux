@@ -169,7 +169,11 @@ def flux_map(cobra_model,
                 met.notes['map_info']['display_name'] = (
                     display_name_format(met))
 
-    return render_model(cobra_model, **kwargs)
+    # Append model's map_info kwargs
+    render_kwargs = dict(cobra_model.notes['map_info'])
+    render_kwargs.update(kwargs)
+
+    return render_model(cobra_model, **render_kwargs)
 
 
 def create_model_json(cobra_model):
@@ -182,7 +186,6 @@ def create_model_json(cobra_model):
 
         # If I'm styling reaction knockouts, don't set the flux for a
         # knocked out reaction
-
         if reaction.lower_bound == reaction.upper_bound == 0:
             reaction.notes['map_info']['group'] = 'ko'
             
@@ -191,6 +194,13 @@ def create_model_json(cobra_model):
                 del reaction.notes['map_info']['flux']
             except KeyError:
                 pass
+
+        # cobrapy doesn't track contexted changes to the notes field. So if a
+        # reaction is set to the 'ko' group, reset it if it doens't match the
+        # bounds requirements
+        elif 'group' in reaction.notes['map_info']:
+            if reaction.notes['map_info']['group'] == 'ko':
+                del reaction.notes['map_info']['group']
 
         else: 
             try:
