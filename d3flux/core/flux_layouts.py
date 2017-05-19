@@ -72,6 +72,10 @@ def flux_map(cobra_model,
         If reaction fluxes are missing, the default thickness to use for
         connecting arrows.
 
+    flux_dict:
+        A dictionary-like object containing the desired fluxes for each
+        reaction in the model
+
     """
 
     # Initialize empty map_info field in object notes
@@ -176,11 +180,21 @@ def flux_map(cobra_model,
     return render_model(cobra_model, **render_kwargs)
 
 
-def create_model_json(cobra_model):
+def create_model_json(cobra_model, flux_dict=None):
     """ Convert a cobra.Model object to a json string for d3. Adds flux
     information if the model has been solved
 
+    flux_dict: dict-like
+        Contains an external setting of the flux solution that should be
+        plotted.
+
     """
+    def get_flux(reaction):
+        if flux_dict is not None:
+            return flux_dict[reaction.id]
+        else:
+            return reaction.flux
+
     # Add flux info
     for reaction in cobra_model.reactions:
 
@@ -195,21 +209,23 @@ def create_model_json(cobra_model):
             except KeyError:
                 pass
 
-        # cobrapy doesn't track contexted changes to the notes field. So if a
-        # reaction is set to the 'ko' group, reset it if it doens't match the
-        # bounds requirements
-        elif 'group' in reaction.notes['map_info']:
-            if reaction.notes['map_info']['group'] == 'ko':
-                del reaction.notes['map_info']['group']
-
         else: 
             try:
-                if abs(reaction.x) < 1E-8:
+                if abs(get_flux(reaction)) < 1E-8:
                     reaction.notes['map_info']['flux'] = 0.
                 else:
-                    reaction.notes['map_info']['flux'] = reaction.x
-            except Exception:
-                pass
+                    reaction.notes['map_info']['flux'] = get_flux(reaction)
+            except (KeyError, TypeError):
+                if 'flux' in reaction.notes['map_info']:
+                    del reaction.notes['map_info']['flux']
+
+            # cobrapy doesn't track contexted changes to the notes field. So if
+            # a reaction is set to the 'ko' group, reset it if it doens't match
+            # the bounds requirements
+            if 'group' in reaction.notes['map_info']:
+                if reaction.notes['map_info']['group'] == 'ko':
+                    del reaction.notes['map_info']['group']
+
 
 
     for metabolite in cobra_model.metabolites:
@@ -221,7 +237,7 @@ def create_model_json(cobra_model):
             pass
 
         try:
-            carried_flux = sum([abs(r.x * r.metabolites[metabolite]) for r in
+            carried_flux = sum([abs(get_flux(r) * r.metabolites[metabolite]) for r in
                                 metabolite.reactions]) / 2
             if carried_flux > 1E-8:
                 metabolite.notes['map_info']['flux'] = carried_flux
@@ -237,7 +253,7 @@ def create_model_json(cobra_model):
 def render_model(cobra_model, background_template=None, custom_css=None,
                  figure_id=None, hide_unused=None, hide_unused_cofactors=None,
                  inactive_alpha=1., figsize=None, label=None, fontsize=None,
-                 default_flux_width=2.5):
+                 default_flux_width=2.5, flux_dict=None):
     """ Render a cobra.Model object in the current window
 
     Parameters:
@@ -275,6 +291,10 @@ def render_model(cobra_model, background_template=None, custom_css=None,
         If reaction fluxes are missing, the default thickness to use for
         connecting arrows.
 
+    flux_dict:
+        A dictionary-like object containing the desired fluxes for each
+        reaction in the model
+
     """
 
     # Increment figure counter
@@ -287,7 +307,7 @@ def render_model(cobra_model, background_template=None, custom_css=None,
     if not figsize:
         figsize = (1028, 768)
 
-    modeljson = create_model_json(cobra_model)
+    modeljson = create_model_json(cobra_model, flux_dict)
 
     if not hide_unused:
         hide_unused = "false"
