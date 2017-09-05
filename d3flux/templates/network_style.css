@@ -20,6 +20,18 @@ text.nodelabel {
   pointer-events: none;
 }
 
+text.nodelabel.right {
+  dx: '.9em';
+  dy: '.35em';
+  text-anchor: 'start';
+}
+
+text.nodelabel.left {
+  dx: '-.9em';
+  dy: '.35em';
+  text-anchor: 'end';
+}
+
 text.cofactor {
   fill: #778899;
 }

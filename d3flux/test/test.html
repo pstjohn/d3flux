@@ -12,18 +12,17 @@
   <!-- <button type="button" class="btn btn-info" href="javascript:(function () { var e = document.createElement('script'); if (window.location.protocol === 'https:') { e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); } else { e.setAttribute('src', 'http://nytimes.github.com/svg-crowbar/svg-crowbar.js'); } e.setAttribute('class', 'svg-crowbar'); document.body.appendChild(e); })();">Download SVG</button> -->
 </div>
 <script type="text/Javascript">
-var d3flux001model = {"notes": {"map_info": {}}, "version": 1, "reactions": [{"id": "R1", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"A": 1}, "lower_bound": 0, "notes": {"map_info": {"hidden": true, "flux": 1000.0, "reversibility": false}}}, {"id": "R2", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"B": 1}, "lower_bound": -1000, "notes": {"map_info": {"hidden": true, "flux": 0.0, "reversibility": true}}}, {"id": "R3", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"P": -1}, "lower_bound": 0, "notes": {"map_info": {"hidden": true, "flux": 500.0, "reversibility": false}}}, {"objective_coefficient": 1.0, "id": "R4", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"E": -1}, "lower_bound": 0, "notes": {"map_info": {"hidden": true, "flux": 500.0, "reversibility": false}}}, {"id": "R5", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"A": -1, "B": 1}, "lower_bound": -1000, "notes": {"map_info": {"flux": 0.0, "reversibility": true}}}, {"id": "R6", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"A": -1, "C": 1}, "lower_bound": 0, "notes": {"map_info": {"flux": 500.0, "reversibility": false}}}, {"id": "R7", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"A": -1, "D": 1}, "lower_bound": 0, "notes": {"map_info": {"flux": 500.0, "reversibility": false}}}, {"id": "R8", "upper_bound": 0, "name": "", "gene_reaction_rule": "", "metabolites": {"C": 1, "B": -1}, "lower_bound": 0, "notes": {"map_info": {"group": "ko", "reversibility": false}}}, {"id": "R9", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"P": 1, "B": -1}, "lower_bound": 0, "notes": {"map_info": {"flux": 0.0, "reversibility": false}}}, {"id": "R10", "upper_bound": 1000, "name": "", "gene_reaction_rule": "", "metabolites": {"P": 1, "E": 1, "D": -1, "C": -1}, "lower_bound": 0, "notes": {"map_info": {"flux": 500.0, "reversibility": false}}}], "metabolites": [{"formula": "", "notes": {"map_info": {"x": 150, "y": 50, "flux": 1000.0, "display_name": "A"}}, "compartment": "", "id": "A", "name": ""}, {"formula": "", "notes": {"map_info": {"x": 80, "y": 130, "flux": 0.0, "display_name": "B"}}, "compartment": "", "id": "B", "name": ""}, {"formula": "", "notes": {"map_info": {"x": 150, "y": 130, "flux": 500.0, "display_name": "C"}}, "compartment": "", "id": "C", "name": ""}, {"formula": "", "notes": {"map_info": {"x": 220, "y": 130, "flux": 500.0, "display_name": "D"}}, "compartment": "", "id": "D", "name": ""}, {"formula": "", "notes": {"map_info": {"x": 220, "y": 200, "flux": 500.0, "display_name": "E"}}, "compartment": "", "id": "E", "name": ""}, {"formula": "", "notes": {"map_info": {"x": 150, "y": 200, "flux": 500.0, "display_name": "P"}}, "compartment": "", "id": "P", "name": ""}], "id": "simple_model", "genes": []};
+var d3flux001model = {"reactions": [{"id": "R1", "name": "", "metabolites": {"A": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R10", "name": "", "metabolites": {"C": -1, "D": -1, "E": 1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 500.0}}}, {"id": "R2", "name": "", "metabolites": {"B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": true, "flux": 0.0}}}, {"id": "R3", "name": "", "metabolites": {"P": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 500.0}}}, {"id": "R4", "name": "", "metabolites": {"E": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "objective_coefficient": 1.0, "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 500.0}}}, {"id": "R5", "name": "", "metabolites": {"A": -1, "B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 0.0}}}, {"id": "R6", "name": "", "metabolites": {"A": -1, "C": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 500.0}}}, {"id": "R7", "name": "", "metabolites": {"A": -1, "D": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 500.0}}}, {"id": "R8", "name": "", "metabolites": {"B": -1, "C": 1}, "lower_bound": 0, "upper_bound": 0, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "group": "ko"}}}, {"id": "R9", "name": "", "metabolites": {"B": -1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 0.0}}}], "metabolites": [{"id": "A", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "A", "x": 150, "y": 50, "flux": 1000.0}}}, {"id": "B", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "B", "x": 80, "y": 130, "align": "left", "flux": 0.0}}}, {"id": "C", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "C", "x": 150, "y": 130, "align": "upper right", "flux": 500.0}}}, {"id": "D", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "D", "x": 220, "y": 130, "flux": 500.0}}}, {"id": "E", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "E", "x": 220, "y": 200, "flux": 500.0}}}, {"id": "P", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "P", "x": 150, "y": 200, "align": "lower center", "flux": 500.0}}}], "genes": [], "id": "simple_model", "compartments": {"": ""}, "notes": {"map_info": {}}};
 
 require.config({
   paths: {
     d3: "https://d3js.org/d3.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
-    d3tip: "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip",
   }
 });
 
-require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3tip) {
+require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
 
   function main(model) {
     // Render a metabolic network representation of a cobra.Model object.
@@ -67,7 +66,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     }
 
     // Append the CSS styles
-    svg.append("style").text(".node.rxn{fill:#ffa319}.node.rxn.hidden{fill:none;stroke:none;stroke-width:0}.link{fill:none;stroke-linecap:round}text.nodelabel{fill:#555;font-family:Arial;font-size:12;pointer-events:none}text.cofactor{fill:#789}marker.inactive,.node.inactive,text.inactive{fill-opacity:.5}.link.inactive{stroke-opacity:.5}");
+    svg.append("style").text(".node.rxn{fill:#ffa319}.node.rxn.hidden{fill:none;stroke:none;stroke-width:0}.link{fill:none;stroke-linecap:round}text.nodelabel{fill:#555;font-family:Arial;font-size:12;pointer-events:none}text.nodelabel.right{dx:'.9em';dy:'.35em';text-anchor:'start'}text.nodelabel.left{dx:'-.9em';dy:'.35em';text-anchor:'end'}text.cofactor{fill:#789}marker.inactive,.node.inactive,text.inactive{fill-opacity:.5}.link.inactive{stroke-opacity:.5}");
 
     // Code for the figure manipulation buttons.
     d3.select("#d3flux001_options .reactionbutton").on("click", function() {
@@ -601,8 +600,53 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
         return labels;
       })
       .attr("id", function(d) {return d.id})
-      .attr("dx", "12")
-      .attr("dy", ".35em")
+      .attr("dx", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            // debugger;
+            return '-.7em';
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return '0em';
+          }
+          else {
+            return '.9em';
+          }
+        }
+        else {
+          return '.9em';
+        }
+      })
+      .attr("dy", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("upper") !== -1) {
+            return '-.65em';
+          }
+          else if (d.notes.map_info.align.indexOf("lower") !== -1) {
+            return '1.35em';
+          }
+          else {
+            return '.35em';
+          }
+        } else {
+          return '.35em';
+        }
+      })
+      .attr("text-anchor", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            return 'end';
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return 'middle';
+          }
+          else {
+            return 'start';
+          }
+        } else {
+          return 'start';
+        }
+      })
       .attr("font-size", function (d) { 
         if ('cofactor' in d) {
           return 0.8 * 12 + "pt";
@@ -610,16 +654,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
           return "12pt";
         }
       })
-    .text(function(d) { 
-      if ('map_info' in d.notes) {
-        if ('display_name' in d.notes.map_info) {
-          return d.notes.map_info.display_name;
+      .text(function(d) { 
+        if ('map_info' in d.notes) {
+          if ('display_name' in d.notes.map_info) {
+            return d.notes.map_info.display_name;
+          }
         }
-      }
-      // Must not have returned a display name, return the metabolite name
-      // instead
-      return d.name; 
-    });
+        // Must not have returned a display name, return the metabolite name
+        // instead
+        return d.name; 
+      });
 
     var updateNode = function() {
       this.attr("transform", function(d) {

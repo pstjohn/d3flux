@@ -5,11 +5,10 @@ require.config({
     d3: "https://d3js.org/d3.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
-    d3tip: "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip",
   }
 });
 
-require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3tip) {
+require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
 
   function main(model) {
     // Render a metabolic network representation of a cobra.Model object.
@@ -587,8 +586,53 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
         return labels;
       })
       .attr("id", function(d) {return d.id})
-      .attr("dx", "12")
-      .attr("dy", ".35em")
+      .attr("dx", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            // debugger;
+            return '-.7em';
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return '0em';
+          }
+          else {
+            return '.9em';
+          }
+        }
+        else {
+          return '.9em';
+        }
+      })
+      .attr("dy", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("upper") !== -1) {
+            return '-.65em';
+          }
+          else if (d.notes.map_info.align.indexOf("lower") !== -1) {
+            return '1.35em';
+          }
+          else {
+            return '.35em';
+          }
+        } else {
+          return '.35em';
+        }
+      })
+      .attr("text-anchor", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            return 'end';
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return 'middle';
+          }
+          else {
+            return 'start';
+          }
+        } else {
+          return 'start';
+        }
+      })
       .attr("font-size", function (d) { 
         if ('cofactor' in d) {
           return 0.8 * {{ fontsize }} + "pt";
@@ -596,16 +640,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
           return "{{ fontsize }}pt";
         }
       })
-    .text(function(d) { 
-      if ('map_info' in d.notes) {
-        if ('display_name' in d.notes.map_info) {
-          return d.notes.map_info.display_name;
+      .text(function(d) { 
+        if ('map_info' in d.notes) {
+          if ('display_name' in d.notes.map_info) {
+            return d.notes.map_info.display_name;
+          }
         }
-      }
-      // Must not have returned a display name, return the metabolite name
-      // instead
-      return d.name; 
-    });
+        // Must not have returned a display name, return the metabolite name
+        // instead
+        return d.name; 
+      });
 
     var updateNode = function() {
       this.attr("transform", function(d) {
