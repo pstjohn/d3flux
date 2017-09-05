@@ -4,7 +4,8 @@ from d3flux import flux_map
 new_model = load_json_model('simple_model.json')
 
 new_model.objective = new_model.reactions.R4
-new_model.reactions.R8.knock_out()
+# new_model.reactions.R8.knock_out()
+new_model.reactions.R6.knock_out()
 new_model.optimize()
 
 new_model.metabolites.B.notes['map_info']['align'] = 'left'

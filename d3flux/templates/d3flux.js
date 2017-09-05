@@ -590,7 +590,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
         if ('align' in d.notes.map_info) {
           if (d.notes.map_info.align.indexOf("left") !== -1) {
             // debugger;
-            return '-.7em';
+            return '-.9em';
           }
           else if (d.notes.map_info.align.indexOf("center") !== -1) {
             return '0em';
