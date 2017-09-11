@@ -5,11 +5,10 @@ require.config({
     d3: "https://d3js.org/d3.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
-    d3tip: "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip",
   }
 });
 
-require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3tip) {
+require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
 
   function main(model) {
     // Render a metabolic network representation of a cobra.Model object.
@@ -75,11 +74,7 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       // Download the svg using SVG Crowbar. This is still very buggy.
 
       var e = document.createElement('script'); 
-      if (window.location.protocol === 'https:') { 
-        e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); 
-      } else { 
-        e.setAttribute('src', 'https://nytimes.github.com/svg-crowbar/svg-crowbar.js'); 
-      } 
+      e.setAttribute('src', 'https://rawgit.com/pstjohn/svg-crowbar/gh-pages/svg-crowbar.js'); 
       e.setAttribute('class', 'svg-crowbar'); 
       document.body.appendChild(e); 
     });
@@ -131,10 +126,10 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       var dist = average_dist(r, d.rstoich, force.nodes());
 
       cp = new Point2D(r.x - math.multiply(.5*dist, math.sin(angle)),
-	               r.y - math.multiply(.5*dist, math.cos(angle)));
+                 r.y - math.multiply(.5*dist, math.cos(angle)));
 
       cp_inv = new Point2D(r.x + math.multiply(.5*dist, math.sin(angle)),
-	                   r.y + math.multiply(.5*dist, math.cos(angle)));
+                     r.y + math.multiply(.5*dist, math.cos(angle)));
 
       s_point = new Point2D(s.x, s.y)
       r_point = new Point2D(r.x, r.y)
@@ -148,11 +143,11 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       if (plot_reverse_arrowhead(d.rxn)) {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, 
-		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(s)).slice(0)[0];
+    s_point, cp, r_point, s_point, 
+    padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point, 
-		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+    r_point, cp_inv, t_point, t_point, 
+    padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
         a = first_intersect;
         b = last_intersect;
 
@@ -160,16 +155,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
       else {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, padding + get_node_radius(s)).slice(0)[0];
+    s_point, cp, r_point, s_point, padding + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point,
-		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+    r_point, cp_inv, t_point, t_point,
+    padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
         a = first_intersect;
         b = last_intersect;
 
         // b = 1 - (padding + arrowhead_scale(get_flux_width(d.rxn)))/total_len;
       }
-						
+            
       var source_x = s.x*a**2 - 2*s.x*a + s.x - 2*cp.x*a**2 + 2*cp.x*a + r.x*a**2;
       var source_y = s.y*a**2 - 2*s.y*a + s.y - 2*cp.y*a**2 + 2*cp.y*a + r.y*a**2;
 
@@ -196,8 +191,8 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     }
 
     function plot_reverse_arrowhead(rxn) {
-	   return (((Math.abs(rxn.notes.map_info.flux) < 1E-8) || isNaN(rxn.notes.map_info.flux))
-			&& rxn.notes.map_info.reversibility);
+     return (((Math.abs(rxn.notes.map_info.flux) < 1E-8) || isNaN(rxn.notes.map_info.flux))
+      && rxn.notes.map_info.reversibility);
     }
 
     var metabolites = jQuery.extend(true, [], model.metabolites),
@@ -212,7 +207,6 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
     var mfluxes = [];
     metabolites.forEach(function(metabolite) {
       // Don't add hidden reactions
-      // debugger;
       if ('notes' in metabolite) {
         if ('map_info' in metabolite.notes) {
           if (metabolite.notes.map_info.hidden) {
@@ -514,11 +508,11 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
         return "url(#{{ figure_id }}" + d.rxn.id + ")"; 
       })
       .attr("marker-start", function(d) {
-	// Only show the reversible arrow if the reaction isnt carrying flux in
-	// a particular direction
-      	if (plot_reverse_arrowhead(d.rxn)) {
-		return "url(#{{ figure_id }}" + d.rxn.id + "_rev)";
-	}
+  // Only show the reversible arrow if the reaction isnt carrying flux in
+  // a particular direction
+        if (plot_reverse_arrowhead(d.rxn)) {
+    return "url(#{{ figure_id }}" + d.rxn.id + "_rev)";
+  }
       });
 
 
@@ -587,8 +581,64 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
         return labels;
       })
       .attr("id", function(d) {return d.id})
-      .attr("dx", "12")
-      .attr("dy", ".35em")
+      .attr("x", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            if ((d.notes.map_info.align.indexOf("upper") !== -1) || 
+                (d.notes.map_info.align.indexOf("lower") !== -1)) {
+              return '-.6em';
+            }
+            else {
+              return '-.9em';
+            }
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return '0em';
+          }
+          else {
+            if ((d.notes.map_info.align.indexOf("upper") !== -1) ||
+                (d.notes.map_info.align.indexOf("lower") !== -1)) {
+              return '.6em';
+            }
+            else {
+              return '.9em';
+            }
+          }
+        }
+        else {
+          return '.9em';
+        }
+      })
+      .attr("y", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("upper") !== -1) {
+            return '-.65em';
+          }
+          else if (d.notes.map_info.align.indexOf("lower") !== -1) {
+            return '1.35em';
+          }
+          else {
+            return '.35em';
+          }
+        } else {
+          return '.35em';
+        }
+      })
+      .attr("text-anchor", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            return 'end';
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return 'middle';
+          }
+          else {
+            return 'start';
+          }
+        } else {
+          return 'start';
+        }
+      })
       .attr("font-size", function (d) { 
         if ('cofactor' in d) {
           return 0.8 * {{ fontsize }} + "pt";
@@ -596,16 +646,16 @@ require(["d3", "math", "FileSaver", "d3tip"], function (d3, math, FileSaver, d3t
           return "{{ fontsize }}pt";
         }
       })
-    .text(function(d) { 
-      if ('map_info' in d.notes) {
-        if ('display_name' in d.notes.map_info) {
-          return d.notes.map_info.display_name;
+      .text(function(d) { 
+        if ('map_info' in d.notes) {
+          if ('display_name' in d.notes.map_info) {
+            return d.notes.map_info.display_name;
+          }
         }
-      }
-      // Must not have returned a display name, return the metabolite name
-      // instead
-      return d.name; 
-    });
+        // Must not have returned a display name, return the metabolite name
+        // instead
+        return d.name; 
+      });
 
     var updateNode = function() {
       this.attr("transform", function(d) {
@@ -2267,8 +2317,8 @@ Intersection.intersectBezier2Ellipse = function(p1, p2, p3, ec, rx, ry) {
     ).getRoots();
 
     function isValid(value) {
-	  return ( 0 <= value && value <= 1 );
-	}
+    return ( 0 <= value && value <= 1 );
+  }
 
     return roots.filter(isValid).sort();
 

@@ -4,8 +4,13 @@ from d3flux import flux_map
 new_model = load_json_model('simple_model.json')
 
 new_model.objective = new_model.reactions.R4
-new_model.reactions.R8.knock_out()
+# new_model.reactions.R8.knock_out()
+new_model.reactions.R6.knock_out()
 new_model.optimize()
+
+new_model.metabolites.B.notes['map_info']['align'] = 'left'
+new_model.metabolites.P.notes['map_info']['align'] = 'lower center'
+new_model.metabolites.C.notes['map_info']['align'] = 'upper right'
 
 new_model.reactions.R5.bounds = (-1000, 1000)
 
