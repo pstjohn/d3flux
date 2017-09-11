@@ -74,11 +74,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       // Download the svg using SVG Crowbar. This is still very buggy.
 
       var e = document.createElement('script'); 
-      if (window.location.protocol === 'https:') { 
-        e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); 
-      } else { 
-        e.setAttribute('src', 'https://nytimes.github.com/svg-crowbar/svg-crowbar.js'); 
-      } 
+      e.setAttribute('src', 'https://rawgit.com/pstjohn/svg-crowbar/gh-pages/svg-crowbar.js'); 
       e.setAttribute('class', 'svg-crowbar'); 
       document.body.appendChild(e); 
     });
@@ -585,7 +581,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
         return labels;
       })
       .attr("id", function(d) {return d.id})
-      .attr("dx", function(d) {
+      .attr("x", function(d) {
         if ('align' in d.notes.map_info) {
           if (d.notes.map_info.align.indexOf("left") !== -1) {
             if ((d.notes.map_info.align.indexOf("upper") !== -1) || 
@@ -613,7 +609,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
           return '.9em';
         }
       })
-      .attr("dy", function(d) {
+      .attr("y", function(d) {
         if ('align' in d.notes.map_info) {
           if (d.notes.map_info.align.indexOf("upper") !== -1) {
             return '-.65em';

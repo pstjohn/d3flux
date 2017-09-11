@@ -361,5 +361,6 @@ def render_model(cobra_model, background_template=None, custom_css=None,
     # compile and return HTML
     return HTML(html)
 
+
 # Initialize figure counter
 render_model._fignum = 0

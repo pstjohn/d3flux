@@ -16,20 +16,7 @@
 text.nodelabel {
   fill: #555;
   font-family: Arial;
-  font-size: 12;
   pointer-events: none;
-}
-
-text.nodelabel.right {
-  dx: '.9em';
-  dy: '.35em';
-  text-anchor: 'start';
-}
-
-text.nodelabel.left {
-  dx: '-.9em';
-  dy: '.35em';
-  text-anchor: 'end';
 }
 
 text.cofactor {
