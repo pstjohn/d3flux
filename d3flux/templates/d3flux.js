@@ -587,6 +587,9 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
             labels = labels.concat(" inactive");
           }
         }
+        if (d.type == 'rxn') {
+	  labels = labels.concat(" rxn");
+        }
         return labels;
       })
       .attr("id", function(d) {return d.id})
@@ -646,13 +649,6 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
           }
         } else {
           return 'start';
-        }
-      })
-      .attr("font-size", function (d) { 
-        if ('cofactor' in d) {
-          return 0.8 * {{ fontsize }} + "pt";
-        } else {
-          return "{{ fontsize }}pt";
         }
       })
       .text(function(d) { 

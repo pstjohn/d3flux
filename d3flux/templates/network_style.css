@@ -14,13 +14,20 @@
 }
 
 text.nodelabel {
+  font-size: {{ fontsize }}pt;
   fill: #555;
   font-family: Arial;
   pointer-events: none;
 }
 
-text.cofactor {
+text.nodelabel.cofactor {
+  font-size: {{ cf_fontsize }}pt;
   fill: #778899;
+}
+
+text.nodelabel.rxn {
+  fill: #968a81;
+  font-style: italic;
 }
 
 marker.inactive, .node.inactive, text.inactive {

@@ -344,14 +344,15 @@ def render_model(cobra_model, background_template=None, custom_css=None,
     template_js = env.get_template('d3flux.js')
 
     # Render the jinja templates with the given variables
-    css = template_css.render(inactive_alpha=inactive_alpha)
+    css = template_css.render(inactive_alpha=inactive_alpha,
+                              fontsize=fontsize, cf_fontsize=0.8 * fontsize)
 
     js = template_js.render(figure_id=figure_id, modeljson=modeljson,
                             no_background=no_background,
                             hide_unused=hide_unused,
                             hide_unused_cofactors=hide_unused_cofactors,
                             figwidth=figsize[0], figheight=figsize[1],
-                            fontsize=fontsize, css=compress(css + custom_css),
+                            css=compress(css + custom_css),
                             default_flux_width=default_flux_width)
 
     html = template_html.render(figure_id=figure_id,
