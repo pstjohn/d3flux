@@ -28,8 +28,17 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // knocked-out reactions, (red). Others are rendered in different
     // contrasting colors
     var rxncolor = d3.scale.ordinal()
-      .range(["#bbb", "#d62728", "#ff7f0e", "#2ca02c", "#9467bd",
-              "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"])
+      // .range(["#bbb", "#d62728", "#ff7f0e", "#2ca02c", "#9467bd",
+      //         "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"])
+      .range(["#bbb", "#d62728",
+        "#eb6a9b",
+        "#6f3589",
+        "#f18572",
+        "#246035",
+        "#009fea",
+        "#83522b",
+        "#29378a",
+        "#989033"])
       .domain([undefined, 'ko', 1, 2, 3, 4, 5, 6, 7, 8]);
 
     // Initialize the d3 force diagram. Parameters like charge, gavity, and
@@ -815,8 +824,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
               } else {
                 rxn = $.grep(model.reactions, function(e){ 
                   return e.id == node.cofactor; })[0];
-                rxn.notes.map_info.cofactors[node.notes.orig_id] = {
-                  'x' : node.x, 'y' : node.y};
+                rxn.notes.map_info.cofactors[node.notes.orig_id]['x'] = node.x
+                rxn.notes.map_info.cofactors[node.notes.orig_id]['y'] = node.y
               }
             }
           }
