@@ -282,7 +282,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
               // Get the cofactor display name from the original 
               // metabolite node
               if ('map_info' in orig_metabolite.notes) {
-                if ('display_name' in orig_metabolite.notes.map_info) {
+                if (('display_name' in orig_metabolite.notes.map_info) &
+	            !('display_name' in cofactor_node.notes.map_info)) {
                   cofactor_node.notes.map_info.display_name =
                     orig_metabolite.notes.map_info.display_name;
                 }
