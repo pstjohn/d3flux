@@ -26,7 +26,8 @@ text.nodelabel.cofactor {
 }
 
 text.nodelabel.rxn {
-  fill: #968a81;
+  fill: #A9A9A9;
+  font-size: {{ cf_fontsize }}pt;
   font-style: italic;
 }
 
