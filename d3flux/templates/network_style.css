@@ -17,7 +17,6 @@ text.nodelabel {
   font-size: {{ fontsize }}pt;
   fill: #555;
   font-family: Arial;
-  pointer-events: none;
 }
 
 text.nodelabel.cofactor {
