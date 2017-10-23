@@ -6,6 +6,7 @@ build
 *.py[co]
 __pycache__
 ~$*
+.cache
 
 # Setuptools distribution folder.
 /dist/
