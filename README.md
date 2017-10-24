@@ -1,5 +1,7 @@
 # D3flux
 
+[![Build Status](https://travis-ci.org/pstjohn/d3flux.svg?branch=master)](https://travis-ci.org/pstjohn/d3flux)
+
 This package implements a d3.js based visualization tool for cobrapy models.
 
 ![](https://cloud.githubusercontent.com/assets/2576846/23142805/09426396-f77b-11e6-9c63-028a6c16a367.png)
