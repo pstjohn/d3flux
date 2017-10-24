@@ -79,8 +79,8 @@ def flux_map(cobra_model,
     """
 
     # Initialize empty map_info field in object notes
-    for obj in itertools.chain([cobra_model, *cobra_model.metabolites,
-                                *cobra_model.reactions]):
+    for obj in itertools.chain([cobra_model], cobra_model.metabolites,
+                               cobra_model.reactions):
         if 'map_info' not in obj.notes:
             obj.notes['map_info'] = {}
 
