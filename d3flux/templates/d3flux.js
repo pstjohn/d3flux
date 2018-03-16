@@ -55,7 +55,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // initalize the svg canvas
     if ({{ no_background }}) {
       var svg = d3.select("#{{ figure_id }}").append("svg")
-        .attr("viewBox", "0 0 {{ figwidth }} {{ figheight }}");
+        .attr("viewBox", "0 0 {{ figwidth }} {{ figheight }}")
+	.attr("style", "display:block;margin:auto;width:{{ svg_scale }}%");
     } else {
       var svg = d3.select("#{{ figure_id }}").select("svg");
     }
