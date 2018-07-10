@@ -56,7 +56,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     if ({{ no_background }}) {
       var svg = d3.select("#{{ figure_id }}").append("svg")
         .attr("viewBox", "0 0 {{ figwidth }} {{ figheight }}")
-	.attr("style", "display:block;margin:auto;width:{{ svg_scale }}%");
+        .attr("style", "display:block;margin:auto;width:{{ svg_scale }}%");
     } else {
       var svg = d3.select("#{{ figure_id }}").select("svg");
     }
@@ -270,8 +270,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
                 'cofactor' : reaction.id
               };
 
-              if ('flux' in reaction.notes.map_info) {
-                cofactor_node.notes.map_info['flux'] = reaction.notes.map_info.flux;
+              if ('flux' in orig_metabolite.notes.map_info) {
+                cofactor_node.notes.map_info['flux'] = orig_metabolite.notes.map_info.flux;
               }
 
               // Inheret color from original metabolite
@@ -762,10 +762,12 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       }
     }
 
-    function get_flux_stroke (rxn) {
-      // For now, just keep the same color
-      return rxncolor(rxn.notes.map_info.group);
-      // return 
+    function get_flux_stroke (d) {
+      if ('color' in d.notes.map_info) {
+        return d.notes.map_info.color;
+      } else {
+          return rxncolor(d.notes.map_info.group);
+        }
     }
 
     function markerscale (d) {
@@ -773,6 +775,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     }
 
     function get_node_radius (d) {
+      if ('cofactor' in d) {return 4;}
       try {
         var nodewidth = metabolite_scale(Math.abs(d.notes.map_info.flux));
         if (!isNaN(nodewidth)) {

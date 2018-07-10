@@ -1,18 +1,13 @@
 <!DOCTYPE html> <html> <head> <title>Test d3flux page</title> <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js" integrity="sha256-Vjusm6Kh2U7/tb6jBh+MOfxnaf2TWsTph34bMKhC1Qc=" crossorigin="anonymous"></script> <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> </head> <body><div id="d3flux001">
-  <!-- <style scoped> -->
-  <!--  -->
-  <!--  -->
-  <!-- </style> -->
   
 </div>
 <div id="d3flux001_options">
   <button type="button" class="download btn btn-primary">Save JSON</button>
   <button type="button" class="reactionbutton btn btn-success ">Show Reaction Nodes</button>
   <button type="button" class="svgbutton btn btn-info ">Download SVG</button>
-  <!-- <button type="button" class="btn btn-info" href="javascript:(function () { var e = document.createElement('script'); if (window.location.protocol === 'https:') { e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); } else { e.setAttribute('src', 'http://nytimes.github.com/svg-crowbar/svg-crowbar.js'); } e.setAttribute('class', 'svg-crowbar'); document.body.appendChild(e); })();">Download SVG</button> -->
 </div>
 <script type="text/Javascript">
-var d3flux001model = {"reactions": [{"id": "R1", "name": "", "metabolites": {"A": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R10", "name": "", "metabolites": {"C": -1, "D": -1, "E": 1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}, {"id": "R2", "name": "", "metabolites": {"B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": true, "flux": 1000.0}}}, {"id": "R3", "name": "", "metabolites": {"P": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R4", "name": "", "metabolites": {"E": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "objective_coefficient": 1.0, "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R5", "name": "", "metabolites": {"A": -1, "B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 0.0}}}, {"id": "R6", "name": "", "metabolites": {"A": -1, "C": 1}, "lower_bound": 0, "upper_bound": 0, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "group": "ko"}}}, {"id": "R7", "name": "", "metabolites": {"A": -1, "D": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}, {"id": "R8", "name": "", "metabolites": {"B": -1, "C": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 1000.0}}}, {"id": "R9", "name": "", "metabolites": {"B": -1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 0.0}}}], "metabolites": [{"id": "A", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "A", "x": 150, "y": 50, "flux": 1000.0}}}, {"id": "B", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "B", "x": 80, "y": 130, "align": "left", "flux": 1000.0}}}, {"id": "C", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "C", "x": 150, "y": 130, "align": "upper right", "flux": 1000.0}}}, {"id": "D", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "D", "x": 220, "y": 130, "flux": 1000.0}}}, {"id": "E", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "E", "x": 220, "y": 200, "flux": 1000.0}}}, {"id": "P", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "P", "x": 150, "y": 200, "align": "lower center", "flux": 1000.0}}}], "genes": [], "id": "simple_model", "compartments": {"": ""}, "notes": {"map_info": {}}};
+var d3flux001model = {"metabolites": [{"id": "A", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "A", "x": 150, "y": 50, "flux": 1000.0}}}, {"id": "B", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "B", "x": 80, "y": 130, "align": "left", "flux": 1000.0}}}, {"id": "C", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "C", "x": 150, "y": 130, "align": "upper right", "flux": 1000.0}}}, {"id": "D", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "D", "x": 220, "y": 130, "flux": 1000.0}}}, {"id": "E", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "E", "x": 220, "y": 200, "flux": 1000.0}}}, {"id": "P", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "P", "x": 150, "y": 200, "align": "lower center", "flux": 1000.0}}}], "reactions": [{"id": "R1", "name": "", "metabolites": {"A": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R2", "name": "", "metabolites": {"B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": true, "flux": 1000.0}}}, {"id": "R3", "name": "", "metabolites": {"P": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R4", "name": "", "metabolites": {"E": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "objective_coefficient": 1.0, "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R5", "name": "", "metabolites": {"A": -1, "B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 0.0}}}, {"id": "R6", "name": "", "metabolites": {"A": -1, "C": 1}, "lower_bound": 0, "upper_bound": 0, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "group": "ko"}}}, {"id": "R7", "name": "", "metabolites": {"A": -1, "D": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}, {"id": "R8", "name": "", "metabolites": {"B": -1, "C": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 1000.0}}}, {"id": "R9", "name": "", "metabolites": {"B": -1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 0.0}}}, {"id": "R10", "name": "", "metabolites": {"C": -1, "D": -1, "E": 1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}], "genes": [], "id": "simple_model", "compartments": {"": ""}, "notes": {"map_info": {}}};
 
 require.config({
   paths: {
@@ -42,8 +37,17 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // knocked-out reactions, (red). Others are rendered in different
     // contrasting colors
     var rxncolor = d3.scale.ordinal()
-      .range(["#bbb", "#d62728", "#ff7f0e", "#2ca02c", "#9467bd",
-              "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"])
+      // .range(["#bbb", "#d62728", "#ff7f0e", "#2ca02c", "#9467bd",
+      //         "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"])
+      .range(["#bbb", "#d62728",
+        "#eb6a9b",
+        "#6f3589",
+        "#f18572",
+        "#246035",
+        "#009fea",
+        "#83522b",
+        "#29378a",
+        "#989033"])
       .domain([undefined, 'ko', 1, 2, 3, 4, 5, 6, 7, 8]);
 
     // Initialize the d3 force diagram. Parameters like charge, gavity, and
@@ -60,13 +64,14 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // initalize the svg canvas
     if (true) {
       var svg = d3.select("#d3flux001").append("svg")
-        .attr("viewBox", "0 0 300 250");
+        .attr("viewBox", "0 0 300 250")
+        .attr("style", "display:block;margin:auto;width:100%");
     } else {
       var svg = d3.select("#d3flux001").select("svg");
     }
 
     // Append the CSS styles
-    svg.append("style").text(".node.rxn{fill:#ffa319}.node.rxn.hidden{fill:none;stroke:none;stroke-width:0}.link{fill:none;stroke-linecap:round}text.nodelabel{fill:#555;font-family:Arial;font-size:12;pointer-events:none}text.nodelabel.right{dx:'.9em';dy:'.35em';text-anchor:'start'}text.nodelabel.left{dx:'-.9em';dy:'.35em';text-anchor:'end'}text.cofactor{fill:#789}marker.inactive,.node.inactive,text.inactive{fill-opacity:.5}.link.inactive{stroke-opacity:.5}");
+    svg.append("style").text(".node.rxn{fill:#ffa319}.node.rxn.hidden{fill:none;stroke:none;stroke-width:0}.link{fill:none;stroke-linecap:round}text.nodelabel{font-size:12pt;fill:#555;font-family:Arial}text.nodelabel.cofactor{font-size:9.600000000000001pt;fill:#789}text.nodelabel.rxn{fill:#a9a9a9;font-size:9.600000000000001pt;font-style:italic}marker.inactive,.node.inactive,text.inactive{fill-opacity:.5}.link.inactive{stroke-opacity:.5}");
 
     // Code for the figure manipulation buttons.
     d3.select("#d3flux001_options .reactionbutton").on("click", function() {
@@ -88,11 +93,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       // Download the svg using SVG Crowbar. This is still very buggy.
 
       var e = document.createElement('script'); 
-      if (window.location.protocol === 'https:') { 
-        e.setAttribute('src', 'https://rawgit.com/NYTimes/svg-crowbar/gh-pages/svg-crowbar.js'); 
-      } else { 
-        e.setAttribute('src', 'https://nytimes.github.com/svg-crowbar/svg-crowbar.js'); 
-      } 
+      e.setAttribute('src', 'https://rawgit.com/pstjohn/svg-crowbar/gh-pages/svg-crowbar.js'); 
       e.setAttribute('class', 'svg-crowbar'); 
       document.body.appendChild(e); 
     });
@@ -144,10 +145,10 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       var dist = average_dist(r, d.rstoich, force.nodes());
 
       cp = new Point2D(r.x - math.multiply(.5*dist, math.sin(angle)),
-	               r.y - math.multiply(.5*dist, math.cos(angle)));
+                 r.y - math.multiply(.5*dist, math.cos(angle)));
 
       cp_inv = new Point2D(r.x + math.multiply(.5*dist, math.sin(angle)),
-	                   r.y + math.multiply(.5*dist, math.cos(angle)));
+                     r.y + math.multiply(.5*dist, math.cos(angle)));
 
       s_point = new Point2D(s.x, s.y)
       r_point = new Point2D(r.x, r.y)
@@ -161,11 +162,11 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       if (plot_reverse_arrowhead(d.rxn)) {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, 
-		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(s)).slice(0)[0];
+    s_point, cp, r_point, s_point, 
+    padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point, 
-		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+    r_point, cp_inv, t_point, t_point, 
+    padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
         a = first_intersect;
         b = last_intersect;
 
@@ -173,16 +174,16 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       else {
 
         first_intersect = Intersection.intersectBezier2Circle(
-		s_point, cp, r_point, s_point, padding + get_node_radius(s)).slice(0)[0];
+    s_point, cp, r_point, s_point, padding + get_node_radius(s)).slice(0)[0];
         last_intersect = Intersection.intersectBezier2Circle(
-		r_point, cp_inv, t_point, t_point,
-		padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
+    r_point, cp_inv, t_point, t_point,
+    padding + arrowhead_scale(get_flux_width(d.rxn)) + get_node_radius(t)).slice(-1)[0];
         a = first_intersect;
         b = last_intersect;
 
         // b = 1 - (padding + arrowhead_scale(get_flux_width(d.rxn)))/total_len;
       }
-						
+            
       var source_x = s.x*a**2 - 2*s.x*a + s.x - 2*cp.x*a**2 + 2*cp.x*a + r.x*a**2;
       var source_y = s.y*a**2 - 2*s.y*a + s.y - 2*cp.y*a**2 + 2*cp.y*a + r.y*a**2;
 
@@ -209,8 +210,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     }
 
     function plot_reverse_arrowhead(rxn) {
-	   return (((Math.abs(rxn.notes.map_info.flux) < 1E-8) || isNaN(rxn.notes.map_info.flux))
-			&& rxn.notes.map_info.reversibility);
+     return (((Math.abs(rxn.notes.map_info.flux) < 1E-8) || isNaN(rxn.notes.map_info.flux))
+      && rxn.notes.map_info.reversibility);
     }
 
     var metabolites = jQuery.extend(true, [], model.metabolites),
@@ -225,7 +226,6 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     var mfluxes = [];
     metabolites.forEach(function(metabolite) {
       // Don't add hidden reactions
-      // debugger;
       if ('notes' in metabolite) {
         if ('map_info' in metabolite.notes) {
           if (metabolite.notes.map_info.hidden) {
@@ -292,7 +292,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
               // Get the cofactor display name from the original 
               // metabolite node
               if ('map_info' in orig_metabolite.notes) {
-                if ('display_name' in orig_metabolite.notes.map_info) {
+                if (('display_name' in orig_metabolite.notes.map_info) &
+	            !('display_name' in cofactor_node.notes.map_info)) {
                   cofactor_node.notes.map_info.display_name =
                     orig_metabolite.notes.map_info.display_name;
                 }
@@ -527,11 +528,11 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
         return "url(#d3flux001" + d.rxn.id + ")"; 
       })
       .attr("marker-start", function(d) {
-	// Only show the reversible arrow if the reaction isnt carrying flux in
-	// a particular direction
-      	if (plot_reverse_arrowhead(d.rxn)) {
-		return "url(#d3flux001" + d.rxn.id + "_rev)";
-	}
+  // Only show the reversible arrow if the reaction isnt carrying flux in
+  // a particular direction
+        if (plot_reverse_arrowhead(d.rxn)) {
+    return "url(#d3flux001" + d.rxn.id + "_rev)";
+  }
       });
 
 
@@ -597,27 +598,41 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
             labels = labels.concat(" inactive");
           }
         }
+        if (d.type == 'rxn') {
+	  labels = labels.concat(" rxn");
+        }
         return labels;
       })
       .attr("id", function(d) {return d.id})
-      .attr("dx", function(d) {
+      .attr("x", function(d) {
         if ('align' in d.notes.map_info) {
           if (d.notes.map_info.align.indexOf("left") !== -1) {
-            // debugger;
-            return '-.9em';
+            if ((d.notes.map_info.align.indexOf("upper") !== -1) || 
+                (d.notes.map_info.align.indexOf("lower") !== -1)) {
+              return '-.6em';
+            }
+            else {
+              return '-.9em';
+            }
           }
           else if (d.notes.map_info.align.indexOf("center") !== -1) {
             return '0em';
           }
           else {
-            return '.9em';
+            if ((d.notes.map_info.align.indexOf("upper") !== -1) ||
+                (d.notes.map_info.align.indexOf("lower") !== -1)) {
+              return '.6em';
+            }
+            else {
+              return '.9em';
+            }
           }
         }
         else {
           return '.9em';
         }
       })
-      .attr("dy", function(d) {
+      .attr("y", function(d) {
         if ('align' in d.notes.map_info) {
           if (d.notes.map_info.align.indexOf("upper") !== -1) {
             return '-.65em';
@@ -645,13 +660,6 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
           }
         } else {
           return 'start';
-        }
-      })
-      .attr("font-size", function (d) { 
-        if ('cofactor' in d) {
-          return 0.8 * 12 + "pt";
-        } else {
-          return "12pt";
         }
       })
       .text(function(d) { 
@@ -763,10 +771,12 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
       }
     }
 
-    function get_flux_stroke (rxn) {
-      // For now, just keep the same color
-      return rxncolor(rxn.notes.map_info.group);
-      // return 
+    function get_flux_stroke (d) {
+      if ('color' in d.notes.map_info) {
+        return d.notes.map_info.color;
+      } else {
+          return rxncolor(d.notes.map_info.group);
+        }
     }
 
     function markerscale (d) {
@@ -823,8 +833,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
               } else {
                 rxn = $.grep(model.reactions, function(e){ 
                   return e.id == node.cofactor; })[0];
-                rxn.notes.map_info.cofactors[node.notes.orig_id] = {
-                  'x' : node.x, 'y' : node.y};
+                rxn.notes.map_info.cofactors[node.notes.orig_id]['x'] = node.x
+                rxn.notes.map_info.cofactors[node.notes.orig_id]['y'] = node.y
               }
             }
           }
@@ -2325,8 +2335,8 @@ Intersection.intersectBezier2Ellipse = function(p1, p2, p3, ec, rx, ry) {
     ).getRoots();
 
     function isValid(value) {
-	  return ( 0 <= value && value <= 1 );
-	}
+    return ( 0 <= value && value <= 1 );
+  }
 
     return roots.filter(isValid).sort();
 
