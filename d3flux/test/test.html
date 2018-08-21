@@ -7,17 +7,23 @@
   <button type="button" class="svgbutton btn btn-info ">Download SVG</button>
 </div>
 <script type="text/Javascript">
-var d3flux001model = {"metabolites": [{"id": "A", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "A", "x": 150, "y": 50, "flux": 1000.0}}}, {"id": "B", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "B", "x": 80, "y": 130, "align": "left", "flux": 1000.0}}}, {"id": "C", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "C", "x": 150, "y": 130, "align": "upper right", "flux": 1000.0}}}, {"id": "D", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "D", "x": 220, "y": 130, "flux": 1000.0}}}, {"id": "E", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "E", "x": 220, "y": 200, "flux": 1000.0}}}, {"id": "P", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "P", "x": 150, "y": 200, "align": "lower center", "flux": 1000.0}}}], "reactions": [{"id": "R1", "name": "", "metabolites": {"A": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R2", "name": "", "metabolites": {"B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": true, "flux": 1000.0}}}, {"id": "R3", "name": "", "metabolites": {"P": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R4", "name": "", "metabolites": {"E": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "objective_coefficient": 1.0, "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R5", "name": "", "metabolites": {"A": -1, "B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 0.0}}}, {"id": "R6", "name": "", "metabolites": {"A": -1, "C": 1}, "lower_bound": 0, "upper_bound": 0, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "group": "ko"}}}, {"id": "R7", "name": "", "metabolites": {"A": -1, "D": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}, {"id": "R8", "name": "", "metabolites": {"B": -1, "C": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 1000.0}}}, {"id": "R9", "name": "", "metabolites": {"B": -1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 0.0}}}, {"id": "R10", "name": "", "metabolites": {"C": -1, "D": -1, "E": 1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}], "genes": [], "id": "simple_model", "compartments": {"": ""}, "notes": {"map_info": {}}};
+var d3flux001model = {"metabolites": [{"id": "A", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "A", "flux": 1000.0}}}, {"id": "B", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "B", "align": "left", "flux": 1000.0}}}, {"id": "C", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "C", "align": "upper right", "flux": 1000.0}}}, {"id": "D", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "D", "flux": 1000.0}}}, {"id": "E", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "E", "flux": 1000.0}}}, {"id": "P", "name": "", "compartment": "", "formula": "", "notes": {"map_info": {"display_name": "P", "align": "lower center", "flux": 1000.0}}}], "reactions": [{"id": "R1", "name": "", "metabolites": {"A": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R2", "name": "", "metabolites": {"B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": true, "flux": 1000.0}}}, {"id": "R3", "name": "", "metabolites": {"P": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R4", "name": "", "metabolites": {"E": -1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "objective_coefficient": 1.0, "notes": {"map_info": {"hidden": true, "reversibility": false, "flux": 1000.0}}}, {"id": "R5", "name": "", "metabolites": {"A": -1, "B": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 0.0}}}, {"id": "R6", "name": "", "metabolites": {"A": -1, "C": 1}, "lower_bound": 0, "upper_bound": 0, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "group": "ko"}}}, {"id": "R7", "name": "", "metabolites": {"A": -1, "D": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}, {"id": "R8", "name": "", "metabolites": {"B": -1, "C": 1}, "lower_bound": -1000, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": true, "flux": 1000.0}}}, {"id": "R9", "name": "", "metabolites": {"B": -1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 0.0}}}, {"id": "R10", "name": "", "metabolites": {"C": -1, "D": -1, "E": 1, "P": 1}, "lower_bound": 0, "upper_bound": 1000, "gene_reaction_rule": "", "notes": {"map_info": {"reversibility": false, "flux": 1000.0}}}], "genes": [], "id": "simple_model", "compartments": {"": ""}, "notes": {"map_info": {}}};
 
 require.config({
   paths: {
     d3: "https://d3js.org/d3.v3.min",
+    cola: "http://marvl.infotech.monash.edu/webcola/cola.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
+  },
+  shim: {
+    'cola': {
+      exports: 'cola'
+    }
   }
 });
 
-require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
+require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver) {
 
   function main(model) {
     // Render a metabolic network representation of a cobra.Model object.
@@ -26,7 +32,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // generated by cobra.display.flux_analysis.create_model_json
 
     // Height and width of the SVG figure, passed via jinja2
-    var width = 300,
+    var width = 900,
     height = 250;
 
     // var color = d3.scale.category10();
@@ -53,18 +59,21 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // Initialize the d3 force diagram. Parameters like charge, gavity, and
     // link distance are currently hard-coded in -- probably should change
     // this?
-    var force = d3.layout.force()
+    var force = cola.d3adaptor()
       .linkDistance(30)
-      .charge(-100)
-      .chargeDistance(400)
-      .gravity(.015)
       .size([width, height]);
+    // var force = d3.layout.force()
+    //   .linkDistance(30)
+    //   .charge(-100)
+    //   .chargeDistance(400)
+    //   .gravity(.015)
+    //   .size([width, height]);
 
     // Allow for a background SVG template if one has been provided, otherwise
     // initalize the svg canvas
     if (true) {
       var svg = d3.select("#d3flux001").append("svg")
-        .attr("viewBox", "0 0 300 250")
+        .attr("viewBox", "0 0 900 250")
         .attr("style", "display:block;margin:auto;width:100%");
     } else {
       var svg = d3.select("#d3flux001").select("svg");
@@ -279,8 +288,8 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
                 'cofactor' : reaction.id
               };
 
-              if ('flux' in reaction.notes.map_info) {
-                cofactor_node.notes.map_info['flux'] = reaction.notes.map_info.flux;
+              if ('flux' in orig_metabolite.notes.map_info) {
+                cofactor_node.notes.map_info['flux'] = orig_metabolite.notes.map_info.flux;
               }
 
               // Inheret color from original metabolite
@@ -444,19 +453,19 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
 
     // Modify link strength based on flux:
     // link_strength_scale = d3.scale.pow().exponent(1/2)
-    link_strength_scale = d3.scale.linear()
-      .domain([d3.min(fluxes), d3.max(fluxes)])
-      .range([.2, 2]);
-
-    force
-      .linkStrength(function (link) {
-        try {
-          return link.rxn.notes.map_info.flux;
-        }
-        catch(err) {
-          return 1;
-        }
-      });
+    // link_strength_scale = d3.scale.linear()
+    //   .domain([d3.min(fluxes), d3.max(fluxes)])
+    //   .range([.2, 2]);
+    //
+    // force
+    //   .linkStrength(function (link) {
+    //     try {
+    //       return link.rxn.notes.map_info.flux;
+    //     }
+    //     catch(err) {
+    //       return 1;
+    //     }
+    //   });
 
     force
       .nodes(nodes)
@@ -784,6 +793,7 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     }
 
     function get_node_radius (d) {
+      if ('cofactor' in d) {return 4;}
       try {
         var nodewidth = metabolite_scale(Math.abs(d.notes.map_info.flux));
         if (!isNaN(nodewidth)) {

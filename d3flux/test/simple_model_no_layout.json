@@ -1,0 +1,241 @@
+{
+  "genes": [],
+  "id": "simple_model",
+  "metabolites": [
+    {
+      "compartment": "",
+      "formula": "",
+      "id": "A",
+      "name": "",
+      "notes": {
+        "map_info": {
+          "display_name": "A"
+        }
+      }
+    },
+    {
+      "compartment": "",
+      "formula": "",
+      "id": "B",
+      "name": "",
+      "notes": {
+        "map_info": {
+          "display_name": "B"
+        }
+      }
+    },
+    {
+      "compartment": "",
+      "formula": "",
+      "id": "C",
+      "name": "",
+      "notes": {
+        "map_info": {
+          "display_name": "C"
+        }
+      }
+    },
+    {
+      "compartment": "",
+      "formula": "",
+      "id": "D",
+      "name": "",
+      "notes": {
+        "map_info": {
+          "display_name": "D"
+        }
+      }
+    },
+    {
+      "compartment": "",
+      "formula": "",
+      "id": "E",
+      "name": "",
+      "notes": {
+        "map_info": {
+          "display_name": "E"
+        }
+      }
+    },
+    {
+      "compartment": "",
+      "formula": "",
+      "id": "P",
+      "name": "",
+      "notes": {
+        "map_info": {
+          "display_name": "P"
+        }
+      }
+    }
+  ],
+  "notes": {
+    "map_info": {}
+  },
+  "pathways": [],
+  "reactions": [
+    {
+      "gene_reaction_rule": "",
+      "id": "R1",
+      "lower_bound": 0,
+      "metabolites": {
+        "A": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "hidden": true,
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R2",
+      "lower_bound": -1000,
+      "metabolites": {
+        "B": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "hidden": true,
+          "reversibility": true
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R3",
+      "lower_bound": 0,
+      "metabolites": {
+        "P": -1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "hidden": true,
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R4",
+      "lower_bound": 0,
+      "metabolites": {
+        "E": -1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "hidden": true,
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R5",
+      "lower_bound": 0,
+      "metabolites": {
+        "A": -1,
+        "B": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R6",
+      "lower_bound": 0,
+      "metabolites": {
+        "A": -1,
+        "C": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R7",
+      "lower_bound": 0,
+      "metabolites": {
+        "A": -1,
+        "D": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R8",
+      "lower_bound": -1000,
+      "metabolites": {
+        "B": -1,
+        "C": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "reversibility": true
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R9",
+      "lower_bound": 0,
+      "metabolites": {
+        "B": -1,
+        "P": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    },
+    {
+      "gene_reaction_rule": "",
+      "id": "R10",
+      "lower_bound": 0,
+      "metabolites": {
+        "C": -1,
+        "D": -1,
+        "E": 1,
+        "P": 1
+      },
+      "name": "",
+      "notes": {
+        "map_info": {
+          "reversibility": false
+        }
+      },
+      "upper_bound": 1000
+    }
+  ],
+  "version": 1
+}

@@ -3,12 +3,18 @@ var {{ figure_id }}model = {{ modeljson }};
 require.config({
   paths: {
     d3: "https://d3js.org/d3.v3.min",
+    cola: "http://marvl.infotech.monash.edu/webcola/cola.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
+  },
+  shim: {
+    'cola': {
+      exports: 'cola'
+    }
   }
 });
 
-require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
+require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver) {
 
   function main(model) {
     // Render a metabolic network representation of a cobra.Model object.
@@ -44,12 +50,15 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
     // Initialize the d3 force diagram. Parameters like charge, gavity, and
     // link distance are currently hard-coded in -- probably should change
     // this?
-    var force = d3.layout.force()
+    var force = cola.d3adaptor()
       .linkDistance(30)
-      .charge(-100)
-      .chargeDistance(400)
-      .gravity(.015)
       .size([width, height]);
+    // var force = d3.layout.force()
+    //   .linkDistance(30)
+    //   .charge(-100)
+    //   .chargeDistance(400)
+    //   .gravity(.015)
+    //   .size([width, height]);
 
     // Allow for a background SVG template if one has been provided, otherwise
     // initalize the svg canvas
@@ -435,19 +444,19 @@ require(["d3", "math", "FileSaver"], function (d3, math, FileSaver) {
 
     // Modify link strength based on flux:
     // link_strength_scale = d3.scale.pow().exponent(1/2)
-    link_strength_scale = d3.scale.linear()
-      .domain([d3.min(fluxes), d3.max(fluxes)])
-      .range([.2, 2]);
-
-    force
-      .linkStrength(function (link) {
-        try {
-          return link.rxn.notes.map_info.flux;
-        }
-        catch(err) {
-          return 1;
-        }
-      });
+    // link_strength_scale = d3.scale.linear()
+    //   .domain([d3.min(fluxes), d3.max(fluxes)])
+    //   .range([.2, 2]);
+    //
+    // force
+    //   .linkStrength(function (link) {
+    //     try {
+    //       return link.rxn.notes.map_info.flux;
+    //     }
+    //     catch(err) {
+    //       return 1;
+    //     }
+    //   });
 
     force
       .nodes(nodes)
