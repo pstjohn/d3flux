@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='d3flux',
-      version='0.2.4',
+      version='0.2.5',
       description='A d3.js-based metabolic visualization tool for cobrapy',
       url='https://github.com/pstjohn/d3flux',
       download_url='https://github.com/pstjohn/d3flux',
