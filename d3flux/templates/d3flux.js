@@ -587,7 +587,7 @@ require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver
         } else return "";});
 
     // add the text 
-    node.append("text")
+    var text = node.append("text")
       .attr("class", function(d) {
         var labels = "nodelabel";
         if ('cofactor' in d) {
@@ -604,34 +604,7 @@ require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver
         return labels;
       })
       .attr("id", function(d) {return d.id})
-      .attr("x", function(d) {
-        if ('align' in d.notes.map_info) {
-          if (d.notes.map_info.align.indexOf("left") !== -1) {
-            if ((d.notes.map_info.align.indexOf("upper") !== -1) || 
-                (d.notes.map_info.align.indexOf("lower") !== -1)) {
-              return '-.6em';
-            }
-            else {
-              return '-.9em';
-            }
-          }
-          else if (d.notes.map_info.align.indexOf("center") !== -1) {
-            return '0em';
-          }
-          else {
-            if ((d.notes.map_info.align.indexOf("upper") !== -1) ||
-                (d.notes.map_info.align.indexOf("lower") !== -1)) {
-              return '.6em';
-            }
-            else {
-              return '.9em';
-            }
-          }
-        }
-        else {
-          return '.9em';
-        }
-      })
+
       .attr("y", function(d) {
         if ('align' in d.notes.map_info) {
           if (d.notes.map_info.align.indexOf("upper") !== -1) {
@@ -661,16 +634,67 @@ require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver
         } else {
           return 'start';
         }
-      })
-      .text(function(d) { 
+      });
+      // .text(function(d) { 
+      //   if ('map_info' in d.notes) {
+      //     if ('display_name' in d.notes.map_info) {
+      //       return d.notes.map_info.display_name;
+      //     }}});
+      
+    text.selectAll("tspan.text")
+      .data(function(d) { 
         if ('map_info' in d.notes) {
           if ('display_name' in d.notes.map_info) {
-            return d.notes.map_info.display_name;
+            return d.notes.map_info.display_name.split('\n').map(function(item, index) {
+                 return {
+                   text : item,
+                   notes : d.notes,
+                   index : index
+                 }})
           }
         }
         // Must not have returned a display name, return the metabolite name
         // instead
-        return d.name; 
+        return [{text: d.name, notes: d.notes, index: 0}]; 
+      })
+      .enter()
+      .append("tspan")
+      .attr("class", "text")
+      .text(d => d.text)
+      .attr("dy", function(d) {
+        if (d.index == 0) {
+          return "0"
+        } else {
+          return "1.2em"
+        }
+      })
+      .attr("x", function(d) {
+        if ('align' in d.notes.map_info) {
+          if (d.notes.map_info.align.indexOf("left") !== -1) {
+            if ((d.notes.map_info.align.indexOf("upper") !== -1) || 
+                (d.notes.map_info.align.indexOf("lower") !== -1)) {
+              return '-.6em';
+            }
+            else {
+              return '-.9em';
+            }
+          }
+          else if (d.notes.map_info.align.indexOf("center") !== -1) {
+            return '0em';
+          }
+          else {
+            if ((d.notes.map_info.align.indexOf("upper") !== -1) ||
+                (d.notes.map_info.align.indexOf("lower") !== -1)) {
+              return '.6em';
+            }
+            else {
+              return '.9em';
+            }
+          }
+        }
+        else {
+          return '.9em';
+        }
       });
 
     var updateNode = function() {

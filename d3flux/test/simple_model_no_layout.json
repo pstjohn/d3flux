@@ -149,7 +149,8 @@
       "name": "",
       "notes": {
         "map_info": {
-          "reversibility": false
+          "reversibility": false,
+	  "display_name": "R5\ntest"
         }
       },
       "upper_bound": 1000
