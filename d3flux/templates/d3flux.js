@@ -52,6 +52,9 @@ require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver
     // this?
     var force = cola.d3adaptor()
       .linkDistance(30)
+      {% if flowLayout %}
+      .flowLayout('y', 15)
+      {% endif %}
       .size([width, height]);
     // var force = d3.layout.force()
     //   .linkDistance(30)

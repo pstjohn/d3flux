@@ -80,6 +80,10 @@ def flux_map(cobra_model,
         A dictionary-like object containing the desired carried fluxes for each
         metabolite in the model
 
+    flowLayout:
+        whether or not to use the webcola's flow layout to force a heirarchical
+        diagram
+
     """
 
     # Initialize empty map_info field in object notes
@@ -265,7 +269,8 @@ def create_model_json(cobra_model, flux_dict=None, metabolite_dict=None):
 def render_model(cobra_model, background_template=None, custom_css=None,
                  figure_id=None, hide_unused=None, hide_unused_cofactors=None,
                  inactive_alpha=1., figsize=None, label=None, fontsize=None,
-                 default_flux_width=2.5, flux_dict=None, metabolite_dict=None, svg_scale=100):
+                 default_flux_width=2.5, flux_dict=None, metabolite_dict=None,
+                 svg_scale=100, flowLayout=False):
     """ Render a cobra.Model object in the current window
 
     Parameters:
@@ -370,7 +375,7 @@ def render_model(cobra_model, background_template=None, custom_css=None,
                             figwidth=figsize[0], figheight=figsize[1],
                             css=compress(css + custom_css),
                             default_flux_width=default_flux_width,
-                            svg_scale=svg_scale)
+                            svg_scale=svg_scale, flowLayout=flowLayout)
 
     html = template_html.render(figure_id=figure_id,
                                 background_svg=background_svg,

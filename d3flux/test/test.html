@@ -60,8 +60,11 @@ require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver
     // link distance are currently hard-coded in -- probably should change
     // this?
     var force = cola.d3adaptor()
-      .linkDistance(30)
+      .flowLayout('y', 15)
+			.linkDistance(30)
       .size([width, height]);
+
+
     // var force = d3.layout.force()
     //   .linkDistance(30)
     //   .charge(-100)
