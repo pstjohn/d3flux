@@ -13,6 +13,7 @@ from IPython.display import HTML
 from csscompressor import compress
 
 from cobra.io.json import model_to_dict
+from cobra.exceptions import OptimizationError
 
 import d3flux
 
@@ -205,7 +206,14 @@ def create_model_json(cobra_model, flux_dict=None, metabolite_dict=None):
         if flux_dict is not None:
             return flux_dict[reaction.id]
         else:
-            return reaction.flux
+
+            try:
+                return reaction.flux
+
+            except OptimizationError:
+                # The model hasn't been solved, so we just throw in a None
+                return None
+
 
     # Add flux info
     for reaction in cobra_model.reactions:
