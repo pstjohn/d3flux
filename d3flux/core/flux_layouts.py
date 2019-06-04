@@ -155,9 +155,17 @@ def flux_map(cobra_model,
                 reaction.notes['map_info'] = {
                     'reversibility': bool(reaction.reversibility)}
 
-        # Hide reactions if all of their products or reactants are hidden
-        if (all([is_hidden(met) for met in reaction.reactants]) or
-                all([is_hidden(met) for met in reaction.products])):
+        # Hide reactions if all of their products or reactants are hidden.
+        # Don't include cofactor metabolites in this calculation.
+        if 'cofactors' in reaction.notes['map_info']:
+            cofactors = reaction.notes['map_info']['cofactors'].keys()
+        else:
+            cofactors = {}
+
+        if (all([is_hidden(met) for met in reaction.reactants
+                 if met.id not in cofactors]) or
+            all([is_hidden(met) for met in reaction.products
+                 if met.id not in cofactors])):
 
             try:
                 reaction.notes['map_info']['hidden'] = True
