@@ -148,29 +148,26 @@ def flux_map(cobra_model,
     for reaction in cobra_model.reactions:
 
         if overwrite_reversibility:
-            try:
-                reaction.notes['map_info']['reversibility'] = \
-                    bool(reaction.reversibility)
-            except KeyError:
-                reaction.notes['map_info'] = {
-                    'reversibility': bool(reaction.reversibility)}
+            reaction.notes['map_info']['reversibility'] = \
+                bool(reaction.reversibility)
 
-        # Hide reactions if all of their products or reactants are hidden.
-        # Don't include cofactor metabolites in this calculation.
-        if 'cofactors' in reaction.notes['map_info']:
-            cofactors = reaction.notes['map_info']['cofactors'].keys()
-        else:
-            cofactors = {}
+        # Unless 'hidden' specifically set to False, hide the reaction if all
+        # the reactants or products are hidden (excluding cofactors)
+        if ('hidden' not in reaction.notes['map_info']) & ~is_hidden(reaction):
 
-        if (all([is_hidden(met) for met in reaction.reactants
-                 if met.id not in cofactors]) or
-            all([is_hidden(met) for met in reaction.products
-                 if met.id not in cofactors])):
+            # Hide reactions if all of their products or reactants are hidden.
+            # Don't include cofactor metabolites in this calculation.
+            if 'cofactors' in reaction.notes['map_info']:
+                cofactors = reaction.notes['map_info']['cofactors'].keys()
+            else:
+                cofactors = {}
 
-            try:
+            if (all([is_hidden(met) for met in reaction.reactants
+                     if met.id not in cofactors]) or
+                all([is_hidden(met) for met in reaction.products
+                     if met.id not in cofactors])):
+
                 reaction.notes['map_info']['hidden'] = True
-            except KeyError:
-                reaction.notes['map_info'] = {'hidden': True}
 
     # Add diplay names to the cobra metabolites accoring to the
     # display_name_format function
