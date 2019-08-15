@@ -2,6 +2,7 @@ var {{ figure_id }}model = {{ modeljson }};
 
 require.config({
   paths: {
+    jQuery: 'https://code.jquery.com/jquery-2.2.4.min',
     d3: "https://d3js.org/d3.v3.min",
     cola: "http://marvl.infotech.monash.edu/webcola/cola.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
@@ -10,11 +11,15 @@ require.config({
   shim: {
     'cola': {
       exports: 'cola'
+    },
+    'jQuery': {
+      exports: 'jQuery'
     }
   }
 });
 
-require(["cola", "d3", "math", "FileSaver"], function (cola, d3, math, FileSaver) {
+require(["jQuery", "cola", "d3", "math", "FileSaver"], function (jQuery, cola,
+	d3, math, FileSaver) {
 
   function main(model) {
     // Render a metabolic network representation of a cobra.Model object.
