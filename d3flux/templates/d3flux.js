@@ -4,7 +4,7 @@ require.config({
   paths: {
     jQuery: 'https://code.jquery.com/jquery-2.2.4.min',
     d3: "https://d3js.org/d3.v3.min",
-    cola: "http://marvl.infotech.monash.edu/webcola/cola.v3.min",
+    cola: "https://cdn.jsdelivr.net/gh/tgdwyer/WebCola@v3/WebCola/cola.v3.min",
     math: "https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.0/math.min",
     FileSaver: "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min",
   },
@@ -776,7 +776,9 @@ require(["jQuery", "cola", "d3", "math", "FileSaver"], function (jQuery, cola,
       .range([6, 12]);
 
     function get_flux_width (rxn) {
-      try {
+      if ('stroke' in rxn.notes.map_info) {
+	return rxn.notes.map_info.stroke;
+      } else try {
         var flux = flux_scale(Math.abs(rxn.notes.map_info.flux));
         if (!isNaN(flux)) {
           return flux;
@@ -790,16 +792,18 @@ require(["jQuery", "cola", "d3", "math", "FileSaver"], function (jQuery, cola,
     }
 
     function get_flux_dasharray (d) {
-      try {
-        if (d.rxn.notes.map_info.group == 'ko') {
-          return "5, 5, 1, 5";
-        }
-        else if (Math.abs(d.rxn.notes.map_info.flux) < 1E-6) {
-          return "5,5";
-        }
-      }
-      catch(err) {
-        return;
+      if ('dasharray' in d.notes.map_info) {
+	return d.notes.map_info.dasharray;
+      } else try {
+	  if (d.notes.map_info.group == 'ko') {
+	    return "5, 5, 1, 5";
+	  }
+	  else if (Math.abs(d.notes.map_info.flux) < 1E-6) {
+	    return "5,5";
+	  }
+	}
+	catch(err) {
+	  return;
       }
     }
 
@@ -831,8 +835,8 @@ require(["jQuery", "cola", "d3", "math", "FileSaver"], function (jQuery, cola,
     svg.selectAll(".link")
       .attr("stroke-width", function (d) {return get_flux_width(d.rxn);})
       .attr("stroke", function (d) {return get_flux_stroke(d.rxn);})
-      .attr("stroke-dasharray", get_flux_dasharray);
-
+      .attr("stroke-dasharray", function(d) {return get_flux_dasharray(d.rxn);});
+  
     svg.selectAll("marker")
       .attr("markerWidth", markerscale)
       .attr("markerHeight", markerscale)
